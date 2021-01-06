@@ -11,7 +11,7 @@ import "./CategorySummary.scss";
 
 function ButtonEdge(props) {
   return (
-    <Grid item xs={4} sm={2}>
+    <Grid className="category-grid-item" item xs={4} sm={3} md={2} xl={1}>
       <Paper className={props.class}>
         <Button className={[props.class, "category-btn"]} variant={props.variant}>
           <Typography variant="body1">{props.content}</Typography>

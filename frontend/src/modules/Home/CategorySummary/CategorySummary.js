@@ -1,19 +1,15 @@
 import React from "react";
-import {
-  ButtonGroup,
-  Button,
-  Grid,
-  Paper,
-  Typography,
-} from "@material-ui/core";
-import CardItem from "../CardItem/CardItem";
+import { Button, Grid, Paper, Typography } from "@material-ui/core";
 import "./CategorySummary.scss";
 
 function ButtonEdge(props) {
   return (
     <Grid className="category-grid-item" item xs={4} sm={3} md={2} xl={1}>
       <Paper className={props.class}>
-        <Button className={[props.class, "category-btn"]} variant={props.variant}>
+        <Button
+          className={[props.class, "category-btn"]}
+          variant={props.variant}
+        >
           <Typography variant="body1">{props.content}</Typography>
         </Button>
       </Paper>

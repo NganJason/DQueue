@@ -1,13 +1,12 @@
 import React from "react";
 import "./PageNumSel.scss";
 
-import { Button, Grid, ButtonGroup } from "@material-ui/core";
+import { Button, ButtonGroup } from "@material-ui/core";
 
 const pageNums = [1, 2, 3, 4];
 
 export default function PageNumSel(props) {
   return (
-    // <Grid container justify="center">
     <div className="page-num-div">
       <ButtonGroup className="page-num-group" variant="outlined">
         {pageNums.map((num, index) => {
@@ -16,6 +15,5 @@ export default function PageNumSel(props) {
         <Button>View All</Button>
       </ButtonGroup>
     </div>
-    // {/* </Grid> */}
   );
 }

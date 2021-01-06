@@ -6,7 +6,7 @@ import "./SearchBar.scss";
 
 export default function SearchBar(props) {
   return (
-    <div className="search-bar">
+    <div className="search-bar-div">
       <Paper component="form" className="search-bar">
         <InputBase
           className="search-input"

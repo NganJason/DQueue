@@ -1,0 +1,14 @@
+@import "../../../../public/styles/colors.scss";
+@import "../../../../public/styles//layouts.scss";
+
+.search-bar{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    text-align: center;
+}
+
+.search-input{
+    display: flex;
+    margin-left: 15px;
+}

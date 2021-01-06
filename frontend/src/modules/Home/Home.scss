@@ -1,0 +1,12 @@
+@import "../../../public/styles/colors.scss";
+@import "../../../public/styles//layouts.scss";
+
+.search-bar-div{
+    background-color: $light-grayish-orange;    
+    height: 300px;
+    display: flex;
+    background: rgba(0, 0, 0, 0.5);
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3) ), url("https://miro.medium.com/max/4960/0*u6NzWQPoewSDsEu_");
+    background-position: top;
+    background-size: cover;
+}

@@ -1,0 +1,53 @@
+@import "../../../../public/styles/colors.scss";
+@import "../../../../public/styles//layouts.scss";
+
+.category-summary {
+  text-align: center;
+  margin: 30px 10%;
+
+  .bottom-left {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .bottom-right {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .top-left {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .top-right {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+
+  .center-top {
+    border-radius: 0;
+  }
+
+  .center-bottom {
+    border-radius: 0;
+  }
+
+  .top-left,
+  .top-right,
+  .bottom-left,
+  .bottom-right,
+  .center-bottom,
+  .center-top {
+    width: 100%;
+    height: 150px;
+
+    .category-btn {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+  }
+
+}

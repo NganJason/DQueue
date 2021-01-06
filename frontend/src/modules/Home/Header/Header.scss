@@ -1,0 +1,19 @@
+@import "../../../../public/styles/colors.scss";
+@import "../../../../public/styles//layouts.scss";
+
+.nav-bar {
+  background-color: $light-orange !important;
+  // margin-bottom: 10px;
+  clear: both;
+  flex-grow: 1;
+}
+
+.nav-bar-title {
+  flex-grow: 1;
+  color: $black;
+}
+
+.nav-bar .nav-bar-btn{
+  background-color: $very-light-gray;
+  margin: auto 5px;
+}

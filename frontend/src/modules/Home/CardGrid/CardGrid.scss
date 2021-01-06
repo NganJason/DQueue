@@ -1,0 +1,14 @@
+@import "../../../../public/styles/colors.scss";
+@import "../../../../public/styles//layouts.scss";
+
+.card-grid {
+  padding: 0 10%;
+
+  .view-all-btn {
+    background-color: $light-orange;
+  }
+}
+
+.view-all-grid-item{
+    padding: 10px 0;
+}

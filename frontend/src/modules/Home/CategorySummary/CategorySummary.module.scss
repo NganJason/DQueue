@@ -5,55 +5,53 @@
   text-align: center;
   margin: 10px 10%;
 
-  .bottomLeft {
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
+  // .bottomLeft {
+  //   border-top-right-radius: 0;
+  //   border-top-left-radius: 0;
+  //   border-bottom-right-radius: 0;
+  // }
 
-  .bottomRight {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-  .topLeft {
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-  .topRight {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border-top-left-radius: 0;
-  }
+  // .bottomRight {
+  //   border-top-left-radius: 0;
+  //   border-top-right-radius: 0;
+  //   border-bottom-left-radius: 0;
+  // }
 
-  .centerTop {
-    border-radius: 0;
-  }
+  // .bottomCenter {
+  //   border-radius: 0;
+  // }
+  // .topLeft {
+  //   border-bottom-right-radius: 0;
+  //   border-top-right-radius: 0;
+  //   border-bottom-left-radius: 0;
+  // }
+  // .topRight {
+  //   border-bottom-left-radius: 0;
+  //   border-bottom-right-radius: 0;
+  //   border-top-left-radius: 0;
+  // }
+  // .topCenter,
+  // .centerCenter,
+  // .centerLeft,
+  // .centerRight {
+  //   border-radius: 0;
+  // }
 
-  .centerBottom {
-    border-radius: 0;
-  }
+  // .topLeft,
+  // .topRight,
+  // .bottomLeft,
+  // .bottomRight,
+  // .bottomCenter,
+  // .topCenter,
+  // .centerCenter,
+  // .centerLeft,
+  // .centerRight {
+  //   width: 100%;
+  //   height: 10vh;
 
-  .topLeft,
-  .topRight,
-  .bottomLeft,
-  .bottomRight,
-  .centerBottom,
-  .centerTop {
-    width: 100%;
-    height: 10vh;
-
-    .categoryBtn {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-  }
-
+  //   .categoryBtn {
+  //     padding-left: 20px;
+  //     padding-right: 20px;
+  //   }
+  // }
 }
-
-// //First div of main button grid is on top row
-// div:first-child{
-//   border-bottom-left-radius: 0;
-//   border-bottom-right-radius: 0;
-// }

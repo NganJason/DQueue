@@ -1,0 +1,68 @@
+.buttonGrid {
+  .bottomLeft {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .bottomRight {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .bottomCenter {
+    border-radius: 0;
+  }
+
+  .topLeft {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .topLeftOnly {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .topRight {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .topRightOnly {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .topCenter,
+  .centerCenter,
+  .centerLeft,
+  .centerRight,
+  .topCenterOnly {
+    border-radius: 0;
+  }
+
+  .topLeft,
+  .topRight,
+  .bottomLeft,
+  .bottomRight,
+  .bottomCenter,
+  .topCenter,
+  .centerCenter,
+  .centerLeft,
+  .centerRight,
+  .topRightOnly,
+  .topCenterOnly,
+  .topLeftOnly {
+    width: 100%;
+    height: 10vh;
+
+    .categoryBtn {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+}

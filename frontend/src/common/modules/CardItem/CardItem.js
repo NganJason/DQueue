@@ -1,5 +1,5 @@
 import React from "react";
-import "./CardItem.scss";
+import styles from "./CardItem.module.scss";
 import {
   Card,
   CardActionArea,
@@ -18,7 +18,7 @@ export default function CardItem(props) {
         <CardActionArea>
           {props.image && (
             <CardMedia
-              className="card-image"
+              className={styles.cardImage}
               component="img"
               image={props.image}
             ></CardMedia>

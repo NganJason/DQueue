@@ -1,14 +1,14 @@
 @import "../../../../public/styles/colors.scss";
 @import "../../../../public/styles//layouts.scss";
 
-.search-bar{
+.searchBar{
     width: 80%;
     margin: auto;
     display: flex;
     text-align: center;
 }
 
-.search-bar-div{
+.searchBarDiv{
         background-color: $light-grayish-orange;    
     height: 300px;
     display: flex;
@@ -18,7 +18,7 @@
     background-size: cover;
 }
 
-.search-input{
+.searchInput{
     display: flex;
     margin-left: 15px;
 }

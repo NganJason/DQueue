@@ -2,14 +2,14 @@ import React from "react";
 import { Paper, IconButton, InputBase } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
-import "./SearchBar.scss";
+import styles from "./SearchBar.module.scss";
 
 export default function SearchBar(props) {
   return (
-    <div className="search-bar-div">
-      <Paper component="form" className="search-bar">
+    <div className={styles.searchBarDiv}>
+      <Paper component="form" className={styles.searchBar}>
         <InputBase
-          className="search-input"
+          className={styles.searchInput}
           fullWidth
           placeholder="Search for restaurants"
         />

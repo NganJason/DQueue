@@ -1,17 +1,17 @@
 import React from "react";
 import { AppBar, Toolbar, Button, Typography } from "@material-ui/core";
-import "./Header.scss";
+import styles from "./Header.module.scss";
 
 export default function Header(props) {
   return (
-    <div className="nav-bar">
-      <AppBar className="nav-bar" position="static">
+    <div className={styles.navBar}>
+      <AppBar className={styles.navBar} position="static">
         <Toolbar>
-          <Typography variant="h4" className="nav-bar-title">
+          <Typography variant="h4" className={styles.navBarTitle}>
             DQueue
           </Typography>
-          <Button variant="contained" className="nav-bar-btn">Login</Button>
-          <Button variant="contained" className="nav-bar-btn">Sign Up</Button>
+          <Button variant="contained" className={styles.navBarBtn}>Login</Button>
+          <Button variant="contained" className={styles.navBarBtn}>Sign Up</Button>
         </Toolbar>
       </AppBar>
     </div>

@@ -1,14 +1,9 @@
 @import "../../../../public/styles/colors.scss";
 @import "../../../../public/styles//layouts.scss";
 
-.card-grid {
-  padding: 0 10%;
-
-  .view-all-btn {
+div .sectionTitle{
+    margin-top: 5%;
+    margin-bottom: 8%;
     background-color: $light-orange;
-  }
-}
-
-.view-all-grid-item{
-    padding: 10px 0;
+    padding: 8px 10px;
 }

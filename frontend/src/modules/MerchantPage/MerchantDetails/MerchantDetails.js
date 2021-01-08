@@ -15,7 +15,7 @@ function ImageRow(props) {
     <div className={styles.imagesRowContainer}>
       <Grid container spacing={3} className={styles.imageRow}>
         {props.images.map((image, index) => {
-          if (index === 0) return;
+          if (index === 0) return <></>;
           return (
             <Grid item xs key={index}>
               <Card>
@@ -76,7 +76,10 @@ export default function MerchantDetails(props) {
             <ImageRow images={props.images} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <MerchantDescription info={props.info} merchantName={props.merchantName}/>
+            <MerchantDescription
+              info={props.info}
+              merchantName={props.merchantName}
+            />
           </Grid>
         </Grid>
       </Paper>

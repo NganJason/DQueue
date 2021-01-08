@@ -6,6 +6,16 @@
 }
 
 .buttonGrid {
+  //Remove bottom border for all rows except last row
+  .buttonGridRow:not(:last-child) .categoryBtn {
+    border-bottom-width: 0;
+  }
+
+  //Remove right side border of all columns except last col
+  .buttonGridRow .buttonGridItem:not(:last-child) .categoryBtn{
+    border-right-width: 0;
+  }
+
   //First row first col
   .buttonGridRow:first-child:not(:last-child) {
     .buttonGridItem:first-child .categoryBtn {

@@ -22,7 +22,7 @@ function ButtonGrid(props) {
     <div className={styles.buttonGrid}>
       {rows.map((item, index) => {
         return (
-          <Grid container justify="center" spacing={0} component="div">
+          <Grid container justify="center" wrap="nowrap" spacing={0} component="div">
             <ButtonGridRow
               row={index}
               rows={props.rows}

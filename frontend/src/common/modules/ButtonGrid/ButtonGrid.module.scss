@@ -1,0 +1,64 @@
+.categoryBtn {
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+  height: 10vh;
+}
+
+.buttonGrid {
+  //First row first col
+  .buttonGridRow:first-child:not(:last-child) {
+    .buttonGridItem:first-child .categoryBtn {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    //First row last col
+    .buttonGridItem:last-child .categoryBtn {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  .buttonGridRow:last-child:not(:first-child) {
+    //Last row first col
+    .buttonGridItem:first-child .categoryBtn {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    //Last row last col
+    .buttonGridItem:last-child .categoryBtn {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  //Center rows/cols/cells
+  .buttonGridRow:first-child:not(:last-child)
+    .buttonGridItem:not(:first-child):not(:last-child)
+    .categoryBtn,
+  .buttonGridRow:last-child:not(:first-child)
+    .buttonGridItem:not(:first-child):not(:last-child)
+    .categoryBtn,
+  .buttonGridRow:not(:first-child):not(:last-child) .categoryBtn,
+  .buttonGridRow
+    .buttonGridItem:not(:first-child):not(:last-child)
+    .categoryBtn {
+    border-radius: 0;
+  }
+
+  //Single row case, first item
+  .buttonGridRow .buttonGridItem:first-child .categoryBtn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .buttonGridRow .buttonGridItem:last-child .categoryBtn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

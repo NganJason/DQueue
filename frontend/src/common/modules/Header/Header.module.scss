@@ -3,7 +3,6 @@
 
 .navBar {
   background-color: $light-orange !important;
-  // margin-bottom: 10px;
   clear: both;
   flex-grow: 1;
 }
@@ -13,7 +12,12 @@
   color: $black;
 }
 
-.navBar .navBarBtn{
+.navBar .navBarBtn {
   background-color: $very-light-gray;
   margin: auto 5px;
+}
+
+.navBarHomeLink {
+  text-decoration: inherit;
+  color: inherit;
 }

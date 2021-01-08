@@ -15,12 +15,6 @@ export default function CategorySummary(props) {
   return (
     <div className={styles.categorySummary}>
       <ButtonGrid rows={2} cols={3} items={cuisines} />
-      <br/>
-      <ButtonGrid rows={3} cols={3} items={cuisines} />
-      <br/>
-      <ButtonGrid rows={2} cols={3} items={cuisines} />
-      <br/>
-      <ButtonGrid rows={2} cols={3} items={cuisines} />
     </div>
   );
 }

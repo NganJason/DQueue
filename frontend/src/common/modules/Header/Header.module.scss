@@ -1,0 +1,23 @@
+@import "../../../../public/styles/colors.scss";
+@import "../../../../public/styles//layouts.scss";
+
+.navBar {
+  background-color: $light-orange !important;
+  clear: both;
+  flex-grow: 1;
+}
+
+.navBarTitle {
+  flex-grow: 1;
+  color: $black;
+}
+
+.navBar .navBarBtn {
+  background-color: $very-light-gray;
+  margin: auto 5px;
+}
+
+.navBarHomeLink {
+  text-decoration: inherit;
+  color: inherit;
+}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Backdrop } from "@material-ui/core";
 import CardGrid from "../../common/modules/CardGrid/CardGrid";
 import FilterBar from "./FilterBar/FilterBar";
-import FilterBoard from "./FilterBoard/FilterBoard";
+import FilterPopOver from "./FilterPopOver/FilterPopOver";
 import SectionTitle from "../../common/modules/SectionTitle/SectionTitle";
 import { filterOptions, items } from "../../constants/tempDB";
 import styles from "./BrowsePage.module.scss";
@@ -39,7 +39,7 @@ const BrowsePage = () => {
         open={Boolean(popOverAnchor)}
         className={styles.backdrop}
       ></Backdrop>
-      <FilterBoard
+      <FilterPopOver
         filterState={filterState}
         popOverAnchor={popOverAnchor}
         setPopOverAnchor={setPopOverAnchor}

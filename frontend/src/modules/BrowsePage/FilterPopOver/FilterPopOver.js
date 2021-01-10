@@ -3,9 +3,9 @@ import { Grid, Popover } from "@material-ui/core";
 import CheckBoxGrid from "../CheckBoxGrid/CheckBoxGrid";
 import SubtitleTag from "../SubtitleTag/SubtitleTag";
 import { filterOptions } from "../../../constants/tempDB";
-import styles from "./FilterBoard.module.scss";
+import styles from "./FilterPopOver.module.scss";
 
-const FilterBoard = ({
+const FilterPopOver = ({
   popOverAnchor,
   setPopOverAnchor,
   filterState,
@@ -28,7 +28,7 @@ const FilterBoard = ({
           container
           direction="column"
           justify="flex-start"
-          className={styles.filterBoardDiv}
+          className={styles.filterPopOverDiv}
         >
           {Object.keys(filterOptions).map((key, index) => {
             return (
@@ -49,4 +49,4 @@ const FilterBoard = ({
   );
 };
 
-export default FilterBoard;
+export default FilterPopOver;

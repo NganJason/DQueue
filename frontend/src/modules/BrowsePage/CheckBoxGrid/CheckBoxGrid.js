@@ -6,9 +6,10 @@ const CheckBoxGrid = ({ options, filterState, updateFilter }) => {
   return (
     <div>
       <Grid container>
-        {options.map((option) => {
+        {options.map((option, index) => {
           return (
             <CheckBox
+              key={index}
               option={option}
               filterState={filterState}
               updateFilter={updateFilter}

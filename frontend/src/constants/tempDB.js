@@ -63,13 +63,6 @@ export const items = [
 
 export const filterOptions = {
   Price: ["$", "$$", "$$$"],
-  Category: [
-    "American",
-    "Japanese",
-    "Korean",
-    "Chinese",
-    "Indonesian",
-    "Malay",
-  ],
+  Category: ["American", "Mexican", "Italian", "Japanese", "Thai", "India"],
   "Waiting time": ["30 mins", "45 mins", "60 mins", "75 mins", "90 mins"],
 };

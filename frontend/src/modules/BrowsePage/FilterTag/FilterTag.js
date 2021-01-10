@@ -3,14 +3,19 @@ import { Fab, Grid } from "@material-ui/core";
 import { Cancel } from "@material-ui/icons";
 import styles from "./FilterTag.module.scss";
 
-const FilterTag = ({ title }) => {
+const FilterTag = ({ title, updateFilter }) => {
+  const tagClickHandler = () => {
+    updateFilter(title, false);
+  };
   return (
-    <Grid item className={styles.filterTagDiv}>
+    <Grid item>
       <Fab
-        variant="extended"
+        aria-label={title}
         component="div"
         disableRipple="true"
         size="medium"
+        variant="extended"
+        onClick={tagClickHandler}
         className={styles.filterTag}
       >
         <div className={styles.filterTagTitle}>{title}</div>

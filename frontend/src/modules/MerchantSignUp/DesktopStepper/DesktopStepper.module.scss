@@ -1,0 +1,44 @@
+@import "../../../../public/styles/colors.scss";
+@import "../../../../public/styles//layouts.scss";
+
+.formDiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.formPaper {
+  padding: 20px;
+  text-align: center;
+  width: 70%;
+}
+
+.stepper {
+  overflow: hidden;
+  // width: 100%;
+  size: 50%;
+}
+
+//Increase specificity to override default colors
+.formDiv .formPaper {
+  .button {
+    margin: 10px;
+  }
+
+  .stepIconInactive {
+    color: $gray;
+  }
+
+  .stepIconActive {
+    color: $light-orange;
+  }
+
+  .stepIconCompleted {
+    color: $light-grayish-orange;
+  }
+
+  .stepIconText {
+    fill: $dark-gray;
+  }
+}

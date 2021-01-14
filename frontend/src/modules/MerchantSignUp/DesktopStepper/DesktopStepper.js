@@ -18,11 +18,11 @@ export default function DesktopStepper(props) {
   const { merchantInfo, setMerchantInfo, operatingHours, setOperatingHours, dayFields, setDayFields } = props;
   const [activeStep, setActiveStep] = React.useState(0);
 
-  function handleNext(){
+  function handleNext() {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
-  function handleBack(){
+  function handleBack() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
@@ -38,7 +38,7 @@ export default function DesktopStepper(props) {
     <BasicInfoFields merchantInfo={merchantInfo} setMerchantInfo={setMerchantInfo} />,
     <OpeningHours operatingHours={operatingHours} setOperatingHours={setOperatingHours} dayFields={dayFields} setDayFields={setDayFields} />,
     <UploadPhotos />,
-    <Review merchantInfo={merchantInfo} operatingHours={operatingHours}/>,
+    <Review merchantInfo={merchantInfo} operatingHours={operatingHours} />,
   ];
 
   function getStepContent(step) {
@@ -76,22 +76,22 @@ export default function DesktopStepper(props) {
               <Typography className={styles.instructions}>All steps completed - you&apos;re finished</Typography>
             </div>
           ) : (
-            <>
-              <div>
-                <Typography variant="h5">{getStepContent(activeStep).title}</Typography>
-                <Typography variant="body1">{getStepContent(activeStep).description}</Typography>
-              </div>
-              {getStepContent(activeStep).fields}
-              <div>
-                <Button variant="contained" disabled={activeStep === 0} onClick={handleBack} className={styles.button}>
-                  Back
+              <>
+                <div>
+                  <Typography variant="h5">{getStepContent(activeStep).title}</Typography>
+                  <Typography variant="body1">{getStepContent(activeStep).description}</Typography>
+                </div>
+                {getStepContent(activeStep).fields}
+                <div>
+                  <Button variant="contained" disabled={activeStep === 0} onClick={handleBack} className={styles.button}>
+                    Back
                 </Button>
-                <Button variant="contained" onClick={handleNext} className={styles.button}>
-                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                </Button>
-              </div>
-            </>
-          )}
+                  <Button variant="contained" onClick={handleNext} className={styles.button}>
+                    {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                  </Button>
+                </div>
+              </>
+            )}
         </div>
       </Paper>
     </div>

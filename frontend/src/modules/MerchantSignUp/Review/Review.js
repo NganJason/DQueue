@@ -9,21 +9,19 @@ const daysName = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Satur
 function operatingHoursDestructure(operatingHours) {
   //structure of operatingHoursArr:
   //top level of array index corresponds to day, monday = 0, sunday = 6
-  //under each day is another array, which stores the row number of the field in which this day's opening time was specified, if any
-  //For example, if the user's fields are: Monday 9am 10pm (field 0), Wednesday 3am 4am (field 1), Tuesday 4am 5am (field 2)
+  //under each day is an object, which stores an object for each field that has opening and closing times filled. inside each object is the opening and closing time
+  //For example, if the user's fields are: Monday 9am 10pm (day0), Wednesday 3am 4am (day1), Tuesday 4am 5am (day2)
   //Then the output array:
-  //[[{index: 0, opening: 9am, closing: 10pm}], [{}, {}, {index: 2, opening: 4am, closing: 5am}], [{}, {index: 1, opening: 3am, closing: 4am}]]
+  //[{day0: {opening: 9am, closing: 10pm}}, {day2: {opening: 4am, closing 5am}}, {day1: {opening: 3am, closing: 4am}}]
   //Empty objects are placed inside the inner array to ensure that the field's index corresponds to an empty object
   let operatingHoursArr = [];
 
   Object.keys(operatingHours).forEach((key) => {
-    //params = [dayx, 1, closing/opening]
     const params = _.split(key, "_");
     const [fieldNum, dayNum, closing_opening] = params;
     const dayNumber = Number(dayNum);
-    const dayName = daysName[dayNum];
 
-    while(operatingHoursArr.length <= Number(dayNum))
+    while (operatingHoursArr.length <= Number(dayNum))
       operatingHoursArr.push({});
 
     //Opening/closing time key
@@ -38,7 +36,6 @@ function operatingHoursDestructure(operatingHours) {
     }
   })
 
-  console.log(operatingHoursArr);
   return operatingHoursArr;
 }
 
@@ -55,24 +52,22 @@ export default function Review(props) {
         );
       })}
       <Typography>Operating Hours</Typography>
-      {/* {operatingHoursArr.map((item, index) => {
+      {operatingHoursArr.map((item, index) => {
         return (
           <div key={index}>
-            {item.length > 0 && <Typography>{daysName[index]}</Typography>}
-            {item.map((subItem, subIndex) => {
-              if (subItem.index !== undefined) {
-                return (
-                  <>
-                    <Typography key={subIndex}>
-                      {subItem.Opening} - {subItem.Closing}
-                    </Typography>
-                  </>
-                );
-              }
+            {Object.keys(item).map((key, subIndex) => {
+              return (
+                <div key={subIndex}>
+                  {subIndex === 0 && <Typography>{daysName[index]}</Typography>}
+                  <Typography>
+                    {item[key].opening} - {item[key].closing}
+                  </Typography>
+                </div>
+              );
             })}
           </div>
         );
-      })} */}
+      })}
     </div>
   );
 }

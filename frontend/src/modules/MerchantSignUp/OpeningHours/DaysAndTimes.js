@@ -4,6 +4,7 @@ function generateTextValuePair(text, value) {
     text: text,
   };
 }
+
 const times = [
   generateTextValuePair("12:00am", "12:00am"),
   generateTextValuePair("12:30am", "12:30am"),
@@ -55,14 +56,8 @@ const times = [
   generateTextValuePair("11:30pm", "11:30pm"),
 ];
 
-const days = [
-  generateTextValuePair("Monday", 0),
-  generateTextValuePair("Tuesday", 1),
-  generateTextValuePair("Wednesday", 2),
-  generateTextValuePair("Thursday", 3),
-  generateTextValuePair("Friday", 4),
-  generateTextValuePair("Saturday", 5),
-  generateTextValuePair("Sunday", 6),
-];
+const daysArr = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-export { times, days };
+const days = daysArr.map((day, index) => generateTextValuePair(day, index));
+
+export { times, days, daysArr };

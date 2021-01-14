@@ -3,8 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import _ from "lodash";
 
 import styles from "./Review.module.scss";
-
-const daysName = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+import {daysArr as daysName} from "../OpeningHours/DaysAndTimes"; 
 
 function operatingHoursDestructure(operatingHours) {
   //structure of operatingHoursArr:

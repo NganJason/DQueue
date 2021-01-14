@@ -9,13 +9,10 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
-import BasicInfoFields from "../BasicInfoFields/BasicInfoFields";
-import OpeningHours from "../OpeningHours/OpeningHours";
-import UploadPhotos from "../UploadPhotos/UploadPhotos";
-import Review from "../Review/Review";
+import { getStepContent } from "./StepContent";
 
 export default function DesktopStepper(props) {
-  const { merchantInfo, setMerchantInfo, operatingHours, setOperatingHours, dayFields, setDayFields } = props;
+  const stepContent = getStepContent(props);
   const [activeStep, setActiveStep] = React.useState(0);
 
   function handleNext() {
@@ -26,33 +23,13 @@ export default function DesktopStepper(props) {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const steps = ["Basic Information", "Opening Hours", "Upload Photos", "Review"];
-
-  const descriptions = [
-    "Tell us more about your restaurant!",
-    "Your customers hate bad surprises! Let them know when they can visit",
-    "Show your customers how good your place looks",
-    "Make sure everything is correct!",
-  ];
-  const generateFields = [
-    <BasicInfoFields merchantInfo={merchantInfo} setMerchantInfo={setMerchantInfo} />,
-    <OpeningHours operatingHours={operatingHours} setOperatingHours={setOperatingHours} dayFields={dayFields} setDayFields={setDayFields} />,
-    <UploadPhotos />,
-    <Review merchantInfo={merchantInfo} operatingHours={operatingHours} />,
-  ];
-
-  function getStepContent(step) {
-    if (step >= steps.length) return { title: "Unkown Step", description: "How did you get here?" };
-    else return { title: steps[step], description: descriptions[step], fields: generateFields[step] };
-  }
-
   return (
     <div className={styles.formDiv}>
       <Paper className={styles.formPaper}>
         <Stepper activeStep={activeStep} alternativeLabel className={styles.stepper}>
-          {steps.map((label) => {
+          {stepContent.map((item) => {
             return (
-              <Step key={label}>
+              <Step key={item.title}>
                 <StepLabel
                   StepIconProps={{
                     classes: {
@@ -63,14 +40,14 @@ export default function DesktopStepper(props) {
                     },
                   }}
                 >
-                  {label}
+                  {item.title}
                 </StepLabel>
               </Step>
             );
           })}
         </Stepper>
         <div>
-          {activeStep === steps.length ? (
+          {activeStep === stepContent.length ? (
             //All steps completed
             <div>
               <Typography className={styles.instructions}>All steps completed - you&apos;re finished</Typography>
@@ -78,16 +55,16 @@ export default function DesktopStepper(props) {
           ) : (
               <>
                 <div>
-                  <Typography variant="h5">{getStepContent(activeStep).title}</Typography>
-                  <Typography variant="body1">{getStepContent(activeStep).description}</Typography>
+                  <Typography variant="h5">{stepContent[activeStep].title}</Typography>
+                  <Typography variant="body1">{stepContent[activeStep].description}</Typography>
                 </div>
-                {getStepContent(activeStep).fields}
+                {stepContent[activeStep].fields}
                 <div>
                   <Button variant="contained" disabled={activeStep === 0} onClick={handleBack} className={styles.button}>
                     Back
                 </Button>
                   <Button variant="contained" onClick={handleNext} className={styles.button}>
-                    {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                    {activeStep === stepContent.length - 1 ? "Finish" : "Next"}
                   </Button>
                 </div>
               </>

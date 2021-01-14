@@ -36,17 +36,19 @@ function generateFieldProps(label, width) {
   return { label: label, width: width };
 }
 
-const fieldProps = [
-  generateFieldProps("Restaurant Name", "full"),
-  generateFieldProps("Address Line 1", "full"),
-  generateFieldProps("Address Line 2", "full"),
-  generateFieldProps("City", "half"),
-  generateFieldProps("State", "half"),
-  generateFieldProps("Country", "half"),
-  generateFieldProps("Post Code", "half"),
-  generateFieldProps("Contact Number", "full"),
-  generateFieldProps("Email", "full"),
-];
+const fieldWidthPair = {
+  "Restaurant Name": "full",
+  "Address Line 1": "full",
+  "Address Line 2": "full",
+  "City": "half",
+  "State": "half",
+  "Country": "half",
+  "Post Code": "half",
+  "Contact Number": "full",
+  "Email": "full"
+}
+
+const fieldProps = Object.keys(fieldWidthPair).map(key => generateFieldProps(key, fieldWidthPair[key]));
 
 export default function BasicInfoFields(props) {
   const { merchantInfo, setMerchantInfo } = props;

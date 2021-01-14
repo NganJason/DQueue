@@ -6,9 +6,9 @@ import styles from "./BasicInfoFields.module.scss";
 
 function CustomTextField(props) {
   return (
-    <Grid item className={styles.inputGridItem} xs={props.width === "full" ? 12 : 12} md={props.width === "full" ? 12 : 6}>
+    <Grid item className={styles.inputGridItem} xs={12} md={props.width === "full" ? 12 : 6}>
       <TextField
-        value={props.merchantInfo[props.id] ? props.merchantInfo[props.id] : ""}
+        value={props.merchantInfo[props.id] || ""}
         className={styles.inputField}
         id={props.id}
         variant="outlined"

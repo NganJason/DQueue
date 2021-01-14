@@ -29,6 +29,10 @@ div .inputRoot.fieldFocusedColor .notchedOutline {
   padding-right: 0;
 }
 
-.labelRoot{
-  text-align: center;
+.labelRoot.labelDisabled {
+  color: rgba($color: #000000, $alpha: 0.2);
+}
+
+.inputRoot.inputDisabled .notchedOutline {
+  border-color: rgba($color: #000000, $alpha: 0.15);
 }

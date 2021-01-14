@@ -18,12 +18,13 @@ function SelectField(props) {
       <Grid item xs={props.xs} sm={props.sm} md={props.md} lg={props.lg} className={styles.selectFieldGridItem}>
         <FormControl variant="outlined" className={styles.textField}>
           <TextField
+            disabled={props.disabled || false}
             fullWidth
             variant="outlined"
             select
             id={props.id}
             value={props.value}
-            label={props.label}
+            label={props.disabled ? "Select Day" : props.label}
             name={props.name}
             SelectProps={{
               IconComponent: EmptyComponent,
@@ -34,12 +35,14 @@ function SelectField(props) {
               classes: {
                 root: styles.labelRoot,
                 focused: styles.labelFocusedColor,
+                disabled: styles.labelDisabled
               },
             }}
             InputProps={{
               classes: {
                 root: styles.inputRoot,
                 focused: styles.fieldFocusedColor,
+                disabled: styles.inputDisabled,
                 notchedOutline: styles.notchedOutline,
               },
             }}
@@ -66,10 +69,19 @@ function DayTimeField(props) {
     setOperatingHours((prevVal) => {
       const newItem = { ...prevVal };
       newItem[event.target.name] = event.target.value;
-      
+
       console.log(newItem);
       return newItem;
     });
+  }
+
+  function getFilledDay() {
+    if (operatingHours[`day${props.name}`] >= 0) return operatingHours[`day${props.name}`];
+    else return "";
+  }
+
+  function getDayName() {
+    return `day${props.name}_${getFilledDay(props, operatingHours)}`;
   }
 
   return (
@@ -87,18 +99,20 @@ function DayTimeField(props) {
         <SelectField
           xs={3}
           md={2}
+          disabled={getFilledDay() === "" && true}
           changeHandler={handleChange}
-          name={`day${props.name}Opening`}
-          value={operatingHours[`day${props.name}Opening`] ? operatingHours[`day${props.name}Opening`] : ""}
+          name={`${getDayName()}_opening`}
+          value={operatingHours[`${getDayName()}_opening`] || ""}
           options={times}
           label="Open"
         />
         <SelectField
           xs={3}
           md={2}
+          disabled={getFilledDay() === "" && true}
           changeHandler={handleChange}
-          name={`day${props.name}Closing`}
-          value={operatingHours[`day${props.name}Closing`] ? operatingHours[`day${props.name}Closing`] : ""}
+          name={`${getDayName()}_closing`}
+          value={operatingHours[`${getDayName()}_closing`] || ""}
           options={times}
           label="Close"
         />

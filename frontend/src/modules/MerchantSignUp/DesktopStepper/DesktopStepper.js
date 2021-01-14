@@ -18,11 +18,11 @@ export default function DesktopStepper(props) {
   const { merchantInfo, setMerchantInfo, operatingHours, setOperatingHours, dayFields, setDayFields } = props;
   const [activeStep, setActiveStep] = React.useState(0);
 
-  const handleNext = () => {
+  function handleNext(){
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
-  const handleBack = () => {
+  function handleBack(){
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 

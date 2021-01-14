@@ -1,5 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
+import _ from "lodash";
 
 import styles from "./Review.module.scss";
 
@@ -15,42 +16,29 @@ function operatingHoursDestructure(operatingHours) {
   //Empty objects are placed inside the inner array to ensure that the field's index corresponds to an empty object
   let operatingHoursArr = [];
 
-  //First extract days that are set
   Object.keys(operatingHours).forEach((key) => {
-    let ind = Number(key.substr(3, 1));
-    let day;
-    if (key.length === 4) day = Number(operatingHours[key]);
-    if (day !== undefined) {
-      //Increase length of array until equal current day
-      while (operatingHoursArr.length <= day) operatingHoursArr.push([]);
+    //params = [dayx, 1, closing/opening]
+    const params = _.split(key, "_");
+    const [fieldNum, dayNum, closing_opening] = params;
+    const dayNumber = Number(dayNum);
+    const dayName = daysName[dayNum];
 
-      //Increase length of subarray until current index
-      while (operatingHoursArr[day].length <= ind) operatingHoursArr[day].push({});
+    while(operatingHoursArr.length <= Number(dayNum))
+      operatingHoursArr.push({});
 
-      operatingHoursArr[day][ind].index = ind;
+    //Opening/closing time key
+    if (params.length === 3) {
+
+      if (operatingHoursArr[dayNumber][fieldNum] === undefined) {
+        operatingHoursArr[dayNumber][fieldNum] = { opening: "", closing: "" };
+      }
+
+      //Find the field that corresponds to the current item's field
+      operatingHoursArr[dayNumber][fieldNum][closing_opening] = operatingHours[key];
     }
-  });
+  })
 
-  Object.keys(operatingHours).forEach((key) => {
-    let ind = Number(key.substr(3, 1));
-    let day;
-
-    //Find day that has index = ind
-    operatingHoursArr.forEach((item, index) => {
-      item.forEach((obj) => {
-        if (obj.index === ind) day = index;
-      });
-    });
-
-    //Opening/closing time
-    if (key.length !== 4) {
-      let open_or_close = key.substr(4, key.length);
-
-      //Insert open or closing time in to relevant day & field number
-      operatingHoursArr[day][ind][open_or_close] = operatingHours[key];
-    }
-  });
-
+  console.log(operatingHoursArr);
   return operatingHoursArr;
 }
 
@@ -67,7 +55,7 @@ export default function Review(props) {
         );
       })}
       <Typography>Operating Hours</Typography>
-      {operatingHoursArr.map((item, index) => {
+      {/* {operatingHoursArr.map((item, index) => {
         return (
           <div key={index}>
             {item.length > 0 && <Typography>{daysName[index]}</Typography>}
@@ -84,7 +72,7 @@ export default function Review(props) {
             })}
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 }

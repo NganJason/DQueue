@@ -6,6 +6,7 @@ import Home from "./modules/Home/Home";
 import Header from "./common/modules/Header/Header";
 import MerchantPage from "./modules/MerchantPage/MerchantPage";
 import MerchantSignUp from "./modules/MerchantSignUp/MerchantSignUp";
+import BrowsePage from "./modules/BrowsePage/BrowsePage";
 
 import store from "./store";
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/merchant/:name" component={MerchantPage} />
           <Route path="/merchant-sign-up" component={MerchantSignUp}/>
+          <Route path="/browse" component={BrowsePage} />
         </Switch>
       </Provider>
     </Router>

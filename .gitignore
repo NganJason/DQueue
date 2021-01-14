@@ -1,2 +1,8 @@
+<<<<<<< HEAD
+.DS_Store
+notes/
+frontend/.eslintcache
+=======
 node_modules/
 /.vscode
+>>>>>>> a351addf2258230ba037e7b7aa6586cc18a3f659

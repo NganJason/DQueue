@@ -11,6 +11,8 @@ import Typography from "@material-ui/core/Typography";
 
 import { getStepContent } from "./StepContent";
 
+const mobileThreshold = 700;
+
 export default function DesktopStepper(props) {
   const stepContent = getStepContent(props);
   const [activeStep, setActiveStep] = React.useState(0);
@@ -25,7 +27,10 @@ export default function DesktopStepper(props) {
 
   return (
     <div className={styles.formDiv}>
-      <Paper className={styles.formPaper}>
+      <Paper
+        className={`${styles.formPaper} ${props.width <= mobileThreshold && styles.mobileFormPaper}`}
+        elevation={props.width <= 700 ? 0 : undefined}
+      >
         <Stepper activeStep={activeStep} alternativeLabel className={styles.stepper}>
           {stepContent.map((item) => {
             return (
@@ -60,10 +65,10 @@ export default function DesktopStepper(props) {
                 </div>
                 {stepContent[activeStep].fields}
                 <div>
-                  <Button variant="contained" disabled={activeStep === 0} onClick={handleBack} className={styles.button}>
+                  <Button variant="contained" disabled={activeStep === 0} onClick={handleBack} className={`${styles.button} ${props.width <= mobileThreshold && styles.mobileButton}`}>
                     Back
                 </Button>
-                  <Button variant="contained" onClick={handleNext} className={styles.button}>
+                  <Button variant="contained" onClick={handleNext} className={`${styles.button} ${props.width <= mobileThreshold && styles.mobileButton}`}>
                     {activeStep === stepContent.length - 1 ? "Finish" : "Next"}
                   </Button>
                 </div>

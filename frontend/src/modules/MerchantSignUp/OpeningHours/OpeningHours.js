@@ -24,7 +24,7 @@ function SelectField(props) {
             select
             id={props.id}
             value={props.value}
-            label={props.disabled ? "Select Day" : props.label}
+            label={props.label}
             name={props.name}
             SelectProps={{
               IconComponent: EmptyComponent,
@@ -102,7 +102,7 @@ function DayTimeField(props) {
           disabled={getFilledDay() === "" && true}
           changeHandler={handleChange}
           name={`${getDayName()}_opening`}
-          value={operatingHours[`${getDayName()}_opening`] || ""}
+          value={operatingHours[`${getDayName()}_opening`] >= 0 ? operatingHours[`${getDayName()}_opening`] : ""}
           options={times}
           label="Open"
         />
@@ -112,7 +112,7 @@ function DayTimeField(props) {
           disabled={getFilledDay() === "" && true}
           changeHandler={handleChange}
           name={`${getDayName()}_closing`}
-          value={operatingHours[`${getDayName()}_closing`] || ""}
+          value={operatingHours[`${getDayName()}_closing`] >= 0 ? operatingHours[`${getDayName()}_closing`] : ""}
           options={times}
           label="Close"
         />

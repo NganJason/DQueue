@@ -14,9 +14,10 @@ export default function MerchantSignUp() {
 
   return (
     <>
-      <p>{width <= 500 ? "Mobile Stepper" : "Desktop Stepper"}</p>
+      <p>{width <= 700 ? "Mobile Stepper" : "Desktop Stepper"}</p>
       <p>{width}</p>
       <DesktopStepper
+        width={width}
         merchantInfo={merchantInfo}
         setMerchantInfo={setMerchantInfo}
         operatingHours={operatingHours}

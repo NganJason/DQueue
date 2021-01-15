@@ -29,10 +29,14 @@ div .inputRoot.fieldFocusedColor .notchedOutline {
   padding-right: 0;
 }
 
-.labelRoot.labelDisabled {
-  color: rgba($color: #000000, $alpha: 0.2);
+div .labelRoot.labelDisabled {
+  color: rgba($color: #000000, $alpha: 0.1);
 }
 
-.inputRoot.inputDisabled .notchedOutline {
+div .inputRoot.inputDisabled .notchedOutline {
   border-color: rgba($color: #000000, $alpha: 0.15);
+}
+
+.select.selectRoot.selectOutlined.inputDisabled{
+  background-color: rgba($color: #000000, $alpha: 0.05  );
 }

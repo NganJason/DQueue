@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import _ from "lodash";
 
 import styles from "./Review.module.scss";
-import {daysArr as daysName} from "../OpeningHours/DaysAndTimes"; 
+import { daysArr as daysName, timeValToText } from "../OpeningHours/DaysAndTimes";
 
 function operatingHoursDestructure(operatingHours) {
   //structure of operatingHoursArr:
@@ -59,7 +59,7 @@ export default function Review(props) {
                 <div key={subIndex}>
                   {subIndex === 0 && <Typography>{daysName[index]}</Typography>}
                   <Typography>
-                    {item[key].opening} - {item[key].closing}
+                    {timeValToText(item[key].opening)} - {timeValToText(item[key].closing)}
                   </Typography>
                 </div>
               );

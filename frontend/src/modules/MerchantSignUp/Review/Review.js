@@ -1,5 +1,10 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 import _ from "lodash";
 
 import styles from "./Review.module.scss";
@@ -43,30 +48,56 @@ export default function Review(props) {
   let operatingHoursArr = operatingHoursDestructure(operatingHours);
   return (
     <div className={styles.informationDiv}>
-      {Object.keys(merchantInfo).map((key, index) => {
-        return (
-          <Typography key={index}>
-            {key}: {merchantInfo[key]}
-          </Typography>
-        );
-      })}
-      <Typography>Operating Hours</Typography>
-      {operatingHoursArr.map((item, index) => {
-        return (
-          <div key={index}>
-            {Object.keys(item).map((key, subIndex) => {
+      <Paper variant="outlined" elevation={0} className={styles.infoTablePaper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell><div className={styles.tableTitle}>Information</div></TableCell>
+              <TableCell> </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {Object.keys(merchantInfo).map((key, index) => {
               return (
-                <div key={subIndex}>
-                  {subIndex === 0 && <Typography>{daysName[index]}</Typography>}
-                  <Typography>
-                    {timeValToText(item[key].opening)} - {timeValToText(item[key].closing)}
-                  </Typography>
-                </div>
+                <TableRow>
+                  <TableCell>{key}:</TableCell>
+                  <TableCell>{merchantInfo[key]}</TableCell>
+                </TableRow>
               );
             })}
-          </div>
-        );
-      })}
+          </TableBody>
+        </Table>
+      </Paper>
+      <Paper variant="outlined" elevation={0} className={styles.infoTablePaper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell><div className={styles.tableTitle}>Operating Hours</div></TableCell>
+              <TableCell> </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {operatingHoursArr.map((item, index) => {
+              if(Object.keys(item).length === 0)  
+                return;
+              return (
+                  <TableRow key={index}>
+                    <TableCell>{daysName[index]}</TableCell>
+                    <TableCell>
+                      {Object.keys(item).map((key, subIndex) => {
+                        return (
+                          <div key={subIndex}>
+                            {timeValToText(item[key].opening)} - {timeValToText(item[key].closing)}
+                          </div>
+                        );
+                      })}
+                    </TableCell>
+                  </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </Paper>
     </div>
   );
 }

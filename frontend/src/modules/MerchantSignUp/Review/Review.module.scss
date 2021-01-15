@@ -1,5 +1,16 @@
 
+.tableTitle{
+    font-weight: bold;
+}
 
-// .informationDiv{
-//     // text-align: left;
-// }
+.informationDiv{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.infoTablePaper{
+    margin: 25px;
+    width: fit-content;
+    height: fit-content;
+}

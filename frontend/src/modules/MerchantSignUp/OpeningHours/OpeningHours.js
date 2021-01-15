@@ -1,5 +1,6 @@
 import React from "react";
 import { times, days } from "./DaysAndTimes";
+import _ from "lodash";
 
 import styles from "./OpeningHours.module.scss";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -68,6 +69,25 @@ function DayTimeField(props) {
   function handleChange(event) {
     setOperatingHours((prevVal) => {
       const newItem = { ...prevVal };
+      const fieldName = event.target.name;
+      const newDay = event.target.value;
+
+      //If changing day, ensure that previously set times are all shifted over
+      if (_.split(fieldName, "_", 2).length === 1) {
+        const prevDay = newItem[event.target.name];
+        const suffixes = ["opening", "closing"];
+        
+        suffixes.map(suffix => {
+          const oldKey = `${fieldName}_${prevDay}_${suffix}`;
+          const newKey = `${fieldName}_${newDay}_${suffix}`
+          if (oldKey in newItem) {
+            newItem[newKey] = newItem[oldKey];
+            delete newItem[oldKey];
+          }
+        })
+      }
+
+      //Get previously set day
       newItem[event.target.name] = event.target.value;
 
       console.log(newItem);

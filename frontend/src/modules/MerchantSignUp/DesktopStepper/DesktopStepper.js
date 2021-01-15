@@ -60,8 +60,10 @@ export default function DesktopStepper(props) {
           ) : (
               <>
                 <div>
+                  <br/>
                   <Typography variant="h5">{stepContent[activeStep].title}</Typography>
                   <Typography variant="body1">{stepContent[activeStep].description}</Typography>
+                  <br/>
                 </div>
                 {stepContent[activeStep].fields}
                 <div>

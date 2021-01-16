@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 
 import { getStepContent } from "./StepContent";
 
-const mobileThreshold = 700;
+export const mobileThreshold = 700;
 
 export default function DesktopStepper(props) {
   const stepContent = getStepContent(props);

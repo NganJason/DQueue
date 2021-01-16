@@ -24,3 +24,9 @@ div .inputRoot.fieldFocusedColor .notchedOutline {
 .inputGridItem{
   padding: 10px;
 }
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -78,21 +78,21 @@ export default function Review(props) {
           </TableHead>
           <TableBody>
             {operatingHoursArr.map((item, index) => {
-              if(Object.keys(item).length === 0)  
-                return;
+              if (Object.keys(item).length === 0)
+                return (<></>)
               return (
-                  <TableRow key={index}>
-                    <TableCell>{daysName[index]}</TableCell>
-                    <TableCell>
-                      {Object.keys(item).map((key, subIndex) => {
-                        return (
-                          <div key={subIndex}>
-                            {timeValToText(item[key].opening)} - {timeValToText(item[key].closing)}
-                          </div>
-                        );
-                      })}
-                    </TableCell>
-                  </TableRow>
+                <TableRow key={index}>
+                  <TableCell>{daysName[index]}</TableCell>
+                  <TableCell>
+                    {Object.keys(item).map((key, subIndex) => {
+                      return (
+                        <div key={subIndex}>
+                          {timeValToText(item[key].opening)} - {timeValToText(item[key].closing)}
+                        </div>
+                      );
+                    })}
+                  </TableCell>
+                </TableRow>
               );
             })}
           </TableBody>

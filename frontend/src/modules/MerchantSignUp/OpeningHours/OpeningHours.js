@@ -77,7 +77,7 @@ function DayTimeField(props) {
         const prevDay = newItem[event.target.name];
         const suffixes = ["opening", "closing"];
         
-        suffixes.map(suffix => {
+        suffixes.forEach(suffix => {
           const oldKey = `${fieldName}_${prevDay}_${suffix}`;
           const newKey = `${fieldName}_${newDay}_${suffix}`
           if (oldKey in newItem) {
@@ -90,7 +90,7 @@ function DayTimeField(props) {
       //Get previously set day
       newItem[event.target.name] = event.target.value;
 
-      console.log(newItem);
+      // console.log(newItem);
       return newItem;
     });
   }

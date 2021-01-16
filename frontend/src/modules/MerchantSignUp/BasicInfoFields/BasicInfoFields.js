@@ -14,6 +14,8 @@ function CustomTextField(props) {
         variant="outlined"
         label={props.label}
         onChange={props.changeHandler}
+        type={props.type}
+        classes={props.type === "number" ? {input: styles.numberInput} : {}}
         InputLabelProps={{
           classes: {
             root: styles.labelRoot,
@@ -32,23 +34,23 @@ function CustomTextField(props) {
   );
 }
 
-function generateFieldProps(label, width) {
-  return { label: label, width: width };
+function generateFieldProps(label, width, type) {
+  return { label, width, type };
 }
 
-const fieldWidthPair = {
-  "Restaurant Name": "full",
-  "Address Line 1": "full",
-  "Address Line 2": "full",
-  "City": "half",
-  "State": "half",
-  "Country": "half",
-  "Post Code": "half",
-  "Contact Number": "full",
-  "Email": "full"
+const fieldPropsPair = {
+  "Restaurant Name": ["full", "text"],
+  "Address Line 1": ["full", "text"],
+  "Address Line 2": ["full", "text"],
+  "City": ["half", "text"],
+  "State": ["half", "text"],
+  "Country": ["half", "text"],
+  "Post Code": ["half", "number"],
+  "Contact Number": ["full", "number"],
+  "Email": ["full", "email"]
 }
 
-const fieldProps = Object.keys(fieldWidthPair).map(key => generateFieldProps(key, fieldWidthPair[key]));
+const fieldProps = Object.keys(fieldPropsPair).map(key => generateFieldProps(key, fieldPropsPair[key][0], fieldPropsPair[key][1]));
 
 export default function BasicInfoFields(props) {
   const { merchantInfo, setMerchantInfo } = props;
@@ -70,6 +72,7 @@ export default function BasicInfoFields(props) {
               key={index}
               label={item.label}
               width={item.width}
+              type={item.type}
               id={item.label}
               merchantInfo={merchantInfo}
               setMerchantInfo={setMerchantInfo}

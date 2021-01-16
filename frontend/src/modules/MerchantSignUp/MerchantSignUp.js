@@ -11,11 +11,10 @@ export default function MerchantSignUp() {
   const [merchantInfo, setMerchantInfo] = React.useState({});
   const [operatingHours, setOperatingHours] = React.useState({});
   const [dayFields, setDayFields] = React.useState(1);
+  const [imageArr, setImageArr] = React.useState([]);
 
   return (
     <>
-      <p>{width <= 700 ? "Mobile Stepper" : "Desktop Stepper"}</p>
-      <p>{width}</p>
       <DesktopStepper
         width={width}
         merchantInfo={merchantInfo}
@@ -24,6 +23,8 @@ export default function MerchantSignUp() {
         setOperatingHours={setOperatingHours}
         dayFields={dayFields}
         setDayFields={setDayFields}
+        imageArr={imageArr}
+        setImageArr={setImageArr}
       />
     </>
   );

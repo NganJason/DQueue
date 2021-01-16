@@ -20,12 +20,6 @@
   width: 100%;
 }
 
-.stepper {
-  overflow: hidden;
-  // width: 100%;
-  size: 50%;
-}
-
 //Increase specificity to override default colors
 .formDiv .formPaper {
   .button {
@@ -34,21 +28,5 @@
 
   .mobileButton{
     margin: 20px;
-  }
-
-  .stepIconInactive {
-    color: $gray;
-  }
-
-  .stepIconActive {
-    color: $light-orange;
-  }
-
-  .stepIconCompleted {
-    color: $light-grayish-orange;
-  }
-
-  .stepIconText {
-    fill: $dark-gray;
   }
 }

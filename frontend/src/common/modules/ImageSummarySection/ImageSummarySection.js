@@ -15,8 +15,8 @@ function ImageRow(props) {
             return undefined;
           return (
             <Grid item xs key={index} className={styles.imageGridItem}>
-              <Card elevation={index == props.currTitleImage ? 8 : undefined}>
-                <CardActionArea onClick={props.onImageClick} className={index == props.currTitleImage ? styles.selectedImage : undefined}>
+              <Card elevation={index === Number(props.currTitleImage) ? 8 : undefined}>
+                <CardActionArea onClick={props.onImageClick} className={index === Number(props.currTitleImage) ? styles.selectedImage : undefined}>
                   <CardMedia image={image} component="img" id={index} />
                 </CardActionArea>
               </Card>

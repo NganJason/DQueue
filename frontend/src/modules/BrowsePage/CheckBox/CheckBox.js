@@ -8,14 +8,14 @@ const CheckBox = ({ option, filterState, updateFilter }) => {
   };
 
   return (
-    <Grid item md={3} xs={6}>
+    <Grid item xl={2} lg={3} xs={6} md={4}>
       <FormControlLabel
         control={
           <Checkbox
             onChange={checkBoxChangeHandler}
             checked={filterState[option]}
             name={option}
-            color="primary"
+            color="default"
           />
         }
         label={option}

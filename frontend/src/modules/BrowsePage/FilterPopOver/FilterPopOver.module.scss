@@ -1,5 +1,16 @@
 div .filterPopOverDiv {
   width: 50vw;
   min-height: 50vh;
-  padding: 1rem;
+  padding: 2rem;
+}
+
+div .mobilePopOverDiv{
+  width: fit-content;
+}
+
+div .closeButton{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
 }

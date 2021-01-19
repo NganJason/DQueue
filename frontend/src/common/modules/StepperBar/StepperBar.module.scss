@@ -1,0 +1,26 @@
+@import "../../../../public/styles/colors.scss";
+@import "../../../../public/styles/layouts.scss";
+
+.stepper {
+  overflow: hidden;
+  size: 50%;
+}
+
+//Increase specificity to override default colors
+.formDiv .formDiv2 {
+  .stepIconInactive {
+    color: $gray;
+  }
+
+  .stepIconActive {
+    color: $light-orange;
+  }
+
+  .stepIconCompleted {
+    color: $light-grayish-orange;
+  }
+
+  .stepIconText {
+    fill: $dark-gray;
+  }
+}

@@ -1,0 +1,32 @@
+@import "../../../../public/styles/colors.scss";
+@import "../../../../public/styles//layouts.scss";
+
+.formDiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.formPaper {
+  padding: 20px;
+  text-align: center;
+  width: 70%;
+}
+
+.mobileFormPaper {
+  padding: 10px 5px;
+  text-align: center;
+  width: 100%;
+}
+
+//Increase specificity to override default colors
+.formDiv .formPaper {
+  .button {
+    margin: 10px;
+  }
+
+  .mobileButton{
+    margin: 20px;
+  }
+}

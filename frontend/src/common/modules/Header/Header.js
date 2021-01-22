@@ -9,10 +9,14 @@ export default function Header(props) {
       <AppBar className={styles.navBar} position="static">
         <Toolbar>
           <Typography variant="h4" className={styles.navBarTitle}>
-            <Link className={styles.navBarHomeLink} to="/">DQueue</Link>
+            <Link className={styles.navBarHomeLink} to="/">
+              DQueue
+            </Link>
           </Typography>
           <Button variant="contained" className={styles.navBarBtn}>
-            Login
+            <Link className={styles.navBarHomeLink} to="/signup">
+              Login
+            </Link>
           </Button>
           <Button variant="contained" className={styles.navBarBtn}>
             Sign Up

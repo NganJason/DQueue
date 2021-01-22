@@ -2,9 +2,9 @@ import { Typography } from "@material-ui/core";
 import React from "react";
 import styles from "./SubtitleTag.module.scss";
 
-const SubtitleTag = ({ subtitle }) => {
+const SubtitleTag = ({ subtitle, header }) => {
   return (
-    <Typography variant="h5" className={styles.subtitleTag}>
+    <Typography variant={header} className={styles.subtitleTag}>
       {subtitle}
     </Typography>
   );

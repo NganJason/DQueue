@@ -8,11 +8,7 @@ function createTimeArr(minuteInterval){
   const timeArr = [];
 
   for(let i = 0; i < steps; ++i)
-  {
-    const newTime = new Date(0, 0, 0, 0, i * minuteInterval, 0);
-    newTime.setMinutes(newTime.getMinutes());
-    timeArr.push(newTime);
-  }
+    timeArr.push(new Date(0, 0, 0, 0, i * minuteInterval, 0));
 
   return timeArr;
 }
@@ -34,7 +30,7 @@ function timeValToText(timeVal) {
 }
 
 //Create time options with n minute intervals
-const timesArr = createTimeArr(10);
+const timesArr = createTimeArr(30);
 const daysArr = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 //Create time and day options for opening hours page

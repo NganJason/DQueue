@@ -13,7 +13,7 @@ export default function MerchantSignUp() {
   //Get width for determining whether to use mobile or desktop stepper for signup page
   const { width } = useWindowDimensions();
   const [merchantInfo, setMerchantInfo] = React.useState({});
-  const [operatingHours, setOperatingHours] = React.useState({});
+  const [operatingHours, setOperatingHours] = React.useState([]);
   const [dayFields, setDayFields] = React.useState(1);
   const [imageArr, setImageArr] = React.useState([]);
 

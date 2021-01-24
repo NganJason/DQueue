@@ -11,8 +11,8 @@ const getFilterState = (filterOptions) => {
   let filterState = {};
 
   Object.keys(filterOptions).map((categories) => {
-    filterOptions[categories].map((option) => {
-      filterState[option] = false;
+    return filterOptions[categories].map((option) => {
+      return filterState[option] = false;
     });
   });
 

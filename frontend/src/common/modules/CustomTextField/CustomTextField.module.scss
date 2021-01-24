@@ -1,0 +1,30 @@
+@import "../../../../public/styles/colors.scss";
+@import "../../../../public/styles//layouts.scss";
+
+//Styles for material ui input field
+div .labelRoot.labelFocusedColor {
+  color: $black;
+}
+
+//Need many selectors to increase specificity above default material UI colors
+div .inputRoot.fieldFocusedColor .notchedOutline {
+  border-color: $light-orange;
+}
+
+.inputField {
+  width: 100%;
+}
+
+div .inputRoot.inputDisabled .notchedOutline {
+  border-color: rgba($color: #000000, $alpha: 0.2);
+}
+
+.inputField .labelRoot.inputLabelDisabled{
+  color: rgba($color: #000000, $alpha: 0.2);
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}

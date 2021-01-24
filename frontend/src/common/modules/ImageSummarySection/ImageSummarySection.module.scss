@@ -1,0 +1,26 @@
+@import "../../../../public/styles/colors.scss";
+@import "../../../../public/styles//layouts.scss";
+
+div .imageGridItem {
+  margin: 0 1%;
+  max-width: 35%;
+}
+
+.imagesContainer {
+  text-align: center;
+  margin: 1% 15%;
+}
+
+.imagesRowContainer {
+  margin: 3% 5%;
+}
+
+//Disable clicking and reduce opacity to show that image is selected
+.selectedImage{
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.titleImageActionArea{
+  pointer-events: none;
+}

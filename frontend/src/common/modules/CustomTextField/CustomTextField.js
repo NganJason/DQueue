@@ -13,6 +13,9 @@ export default function CustomTextField({value, id, label, type, onChange, disab
     disabled={disabled}
     error={error}
     fullWidth={fullWidth}
+    name={name}
+    helperText={helperText}
+    required={required}
     
     //Style properties
     variant="outlined"

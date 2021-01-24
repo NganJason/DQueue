@@ -5,7 +5,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import _ from "lodash";
 
 import styles from "./Review.module.scss";
 import { daysArr as daysName, timeValToText } from "../OpeningHours/DaysAndTimes";

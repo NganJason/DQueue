@@ -4,7 +4,7 @@ function TextValuePair(text, value) {
 }
 
 function createTimeArr(minuteInterval){
-  const steps = Math.round(1440 / minuteInterval)
+  const steps = Math.floor(1440 / minuteInterval)
   const timeArr = [];
 
   for(let i = 0; i < steps; ++i)

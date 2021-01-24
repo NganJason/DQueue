@@ -1,6 +1,5 @@
 import React from "react";
 import { times, days } from "./DaysAndTimes";
-import _ from "lodash";
 
 import styles from "./OpeningHours.module.scss";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -64,15 +63,6 @@ function DayTimeField(props) {
     return (function(event) {
       setOperatingHours(prevVal => {
         const newVal = [...prevVal];
-
-        //Set length to number of index
-        if(index >= newVal.length)
-          newVal.length = index + 1;
-        
-        //Add new empty object into the array location if undefined
-        if(newVal[index] === undefined)
-          newVal[index] = {day: "", opening: "", closing: ""};
-
         newVal[index][fieldType] = event.target.value;
         return newVal;
       })
@@ -112,18 +102,19 @@ function DayTimeField(props) {
 }
 
 export default function OpeningHours(props) {
-  const { dayFields, setDayFields, operatingHours, setOperatingHours } = props;
-  const fields = new Array(dayFields).fill(0);
+  const { operatingHours, setOperatingHours } = props;
 
   function clickHandler() {
-    setDayFields((prevDays) => {
-      return prevDays + 1;
-    });
+      setOperatingHours(prevVal => {
+      const newVal = [...prevVal];
+      newVal.push({day: "", opening: "", closing: ""});
+      return newVal;
+    })
   }
 
   return (
     <div>
-      {fields.map((item, index) => {
+      {operatingHours.map((item, index) => {
         return <DayTimeField index={index} key={index} operatingHours={operatingHours} setOperatingHours={setOperatingHours} />;
       })}
       <Button variant="outlined" onClick={clickHandler}>

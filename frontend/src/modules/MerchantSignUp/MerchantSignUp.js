@@ -13,8 +13,7 @@ export default function MerchantSignUp() {
   //Get width for determining whether to use mobile or desktop stepper for signup page
   const { width } = useWindowDimensions();
   const [merchantInfo, setMerchantInfo] = React.useState({});
-  const [operatingHours, setOperatingHours] = React.useState([]);
-  const [dayFields, setDayFields] = React.useState(1);
+  const [operatingHours, setOperatingHours] = React.useState([{}]);
   const [imageArr, setImageArr] = React.useState([]);
 
   const stepContent = [
@@ -22,7 +21,7 @@ export default function MerchantSignUp() {
     generateStepContent(
       "Opening Hours",
       "Your customers hate bad surprises! Let them know when they can visit",
-      <OpeningHours operatingHours={operatingHours} setOperatingHours={setOperatingHours} dayFields={dayFields} setDayFields={setDayFields} />),
+      <OpeningHours operatingHours={operatingHours} setOperatingHours={setOperatingHours}/>),
     generateStepContent("Upload Photos", "Show your customers how good your place looks", <UploadPhotos imageArr={imageArr} setImageArr={setImageArr} width={width} />),
     generateStepContent("Review", "Make sure everything is correct!", <Review merchantInfo={merchantInfo} operatingHours={operatingHours} />)
   ];

@@ -1,38 +1,8 @@
 import React from "react";
-import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
+import CustomTextField from "../../../common/modules/CustomTextField/CustomTextField";
 
 import styles from "./BasicInfoFields.module.scss";
-
-function CustomTextField(props) {
-  return (
-    <Grid item className={styles.inputGridItem} xs={12} md={props.width === "full" ? 12 : 6}>
-      <TextField
-        value={props.merchantInfo[props.id] || ""}
-        className={styles.inputField}
-        id={props.id}
-        variant="outlined"
-        label={props.label}
-        onChange={props.changeHandler}
-        type={props.type}
-        classes={props.type === "number" ? {input: styles.numberInput} : {}}
-        InputLabelProps={{
-          classes: {
-            root: styles.labelRoot,
-            focused: styles.labelFocusedColor,
-          },
-        }}
-        InputProps={{
-          classes: {
-            root: styles.inputRoot,
-            focused: styles.fieldFocusedColor,
-            notchedOutline: styles.notchedOutline,
-          },
-        }}
-      />
-    </Grid>
-  );
-}
 
 function generateFieldProps(label, width, type) {
   return { label, width, type };
@@ -68,16 +38,15 @@ export default function BasicInfoFields(props) {
       <Grid container>
         {fieldProps.map((item, index) => {
           return (
-            <CustomTextField
-              key={index}
-              label={item.label}
-              width={item.width}
-              type={item.type}
-              id={item.label}
-              merchantInfo={merchantInfo}
-              setMerchantInfo={setMerchantInfo}
-              changeHandler={changeHandler}
-            />
+            <Grid item key={index} className={styles.inputGridItem} xs={12} md={item.width === "full" ? 12 : 6}>
+              <CustomTextField
+                label={item.label}
+                type={item.type}
+                id={item.label}
+                onChange={changeHandler}
+                value={merchantInfo[item.label] || ""}
+              />
+            </Grid>
           );
         })}
       </Grid>

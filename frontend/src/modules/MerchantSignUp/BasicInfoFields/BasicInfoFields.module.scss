@@ -1,32 +1,11 @@
 @import "../../../../public/styles/colors.scss";
 @import "../../../../public/styles//layouts.scss";
 
-
-//Styles for material ui input field
-div .labelRoot.labelFocusedColor {
-  color: $black;
-}
-
-//Need many selectors to increase specificity above default material UI colors
-div .inputRoot.fieldFocusedColor .notchedOutline {
-  border-color: $light-orange;
-}
-
 .basicInfoDiv {
   margin-left: 25px;
   margin-right: 25px;
 }
 
-.inputField {
-  width: 100%;
-}
-
 .inputGridItem{
   padding: 10px;
-}
-
-input::-webkit-inner-spin-button,
-input::-webkit-outer-spin-button{
-  -webkit-appearance: none;
-  margin: 0;
 }

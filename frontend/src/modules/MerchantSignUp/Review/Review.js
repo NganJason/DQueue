@@ -46,7 +46,7 @@ export default function Review(props) {
           <TableBody>
             {Object.keys(merchantInfo).map((key, index) => {
               return (
-                <TableRow>
+                <TableRow key={index}>
                   <TableCell>{key}:</TableCell>
                   <TableCell>{merchantInfo[key]}</TableCell>
                 </TableRow>

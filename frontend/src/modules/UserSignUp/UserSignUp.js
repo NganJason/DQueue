@@ -27,7 +27,7 @@ const UserSignUp = () => {
           <CustomTab
             tabIndex={tabIndex}
             handleChange={handleChange}
-            tabs={["LogIn", "Sign Up"]}
+            tabs={["Login", "Sign Up"]}
           />
 
           {tabIndex === 0 ? <Login /> : <SignUp />}

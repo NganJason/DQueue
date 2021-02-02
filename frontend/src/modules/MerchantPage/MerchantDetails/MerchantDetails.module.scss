@@ -1,3 +1,6 @@
+@import "../../../../public/styles/colors.scss";
+@import "../../../../public/styles//layouts.scss";
+
 .merchantPaper {
   margin: 1% 5%;
   padding: 20px 0;
@@ -13,23 +16,4 @@
   .queueBtn {
     margin-top: 25px;
   }
-}
-
-.mainImage {
-  width: 85%;
-  margin: auto;
-}
-
-.extraImages {
-  width: 24%;
-  margin: 3% 1%;
-}
-
-.imagesContainer {
-  text-align: center;
-  padding: 1% 15%;
-}
-
-.imagesRowContainer {
-  margin: 3% 5%;
 }

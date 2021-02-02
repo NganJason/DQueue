@@ -1,0 +1,22 @@
+
+.imageStyle{
+    width: 20%;
+    align-self: flex-start;
+}
+
+.imagesDiv{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    width: 70vw;
+    max-width: 900px;
+}
+
+.mobileImagesDiv{
+    width: 100%;
+}
+
+div .uploadButton{
+    margin: 10px;
+}

@@ -5,14 +5,15 @@ import FilterBar from "./FilterBar/FilterBar";
 import FilterPopOver from "./FilterPopOver/FilterPopOver";
 import SectionTitle from "../../common/modules/SectionTitle/SectionTitle";
 import { filterOptions, items } from "../../constants/tempDB";
+import { useWindowDimensions } from "../../common/utils";
 import styles from "./BrowsePage.module.scss";
 
 const getFilterState = (filterOptions) => {
   let filterState = {};
 
   Object.keys(filterOptions).map((categories) => {
-    filterOptions[categories].map((option) => {
-      filterState[option] = false;
+    return filterOptions[categories].map((option) => {
+      return filterState[option] = false;
     });
   });
 
@@ -20,7 +21,8 @@ const getFilterState = (filterOptions) => {
 };
 
 const BrowsePage = () => {
-  const [popOverAnchor, setPopOverAnchor] = useState(null);
+  const windowDimensions = useWindowDimensions();
+  const [popOverAnchor, setPopOverAnchor] = useState(false);
   const [filterState, setFilterState] = useState(getFilterState(filterOptions));
 
   const updateFilter = (filterOption, selected) => {
@@ -36,7 +38,7 @@ const BrowsePage = () => {
         updateFilter={updateFilter}
       />
       <Backdrop
-        open={Boolean(popOverAnchor)}
+        open={popOverAnchor}
         className={styles.backdrop}
       ></Backdrop>
       <FilterPopOver
@@ -44,6 +46,7 @@ const BrowsePage = () => {
         popOverAnchor={popOverAnchor}
         setPopOverAnchor={setPopOverAnchor}
         updateFilter={updateFilter}
+        windowDimensions={windowDimensions}
       />
       <CardGrid justify="flex-start" spacing="6" gridItems={items} />
     </div>

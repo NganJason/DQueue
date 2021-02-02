@@ -1,45 +1,22 @@
-import { InputAdornment } from "@material-ui/core";
-import { AccountCircle, Visibility, VisibilityOff } from "@material-ui/icons";
-
-export const loginFormConst = (changeVisibility, visibility) => {
+export const loginFormConst = () => {
   return [
     {
       label: "Email Address",
-      type: "text",
-      InputProps: {
-        startAdornment: (
-          <InputAdornment position="start">
-            <AccountCircle />
-          </InputAdornment>
-        ),
-      },
+      type: "text"
     },
+
     {
       label: "Password",
-      type: visibility ? "text" : "password",
-      InputProps: {
-        startAdornment: (
-          <InputAdornment onClick={changeVisibility} position="start">
-            {visibility ? <Visibility /> : <VisibilityOff />}
-          </InputAdornment>
-        ),
-      },
+      type: "password",
     },
   ];
 };
 
-export const signupFormConst = (visibility, changeVisibility) => {
+export const signupFormConst = () => {
   return [
     {
       label: "Email Address",
-      type: "text",
-      InputProps: {
-        startAdornment: (
-          <InputAdornment position="start">
-            <AccountCircle />
-          </InputAdornment>
-        ),
-      },
+      type: "text"
     },
     {
       label: "First Name",
@@ -51,25 +28,11 @@ export const signupFormConst = (visibility, changeVisibility) => {
     },
     {
       label: "Password",
-      type: "password",
-      InputProps: {
-        startAdornment: (
-          <InputAdornment onClick={changeVisibility} position="start">
-            {visibility ? <Visibility /> : <VisibilityOff />}
-          </InputAdornment>
-        ),
-      },
+      type: "password"
     },
     {
       label: "Confirmed Password",
-      type: "password",
-      InputProps: {
-        startAdornment: (
-          <InputAdornment onClick={changeVisibility} position="start">
-            {visibility ? <Visibility /> : <VisibilityOff />}
-          </InputAdornment>
-        ),
-      },
+      type: "password"
     },
   ];
 };

@@ -8,7 +8,6 @@ const CustomButton = ({ title }) => {
     <Grid container justify="center" className={styles.buttonDiv}>
       <Button
         variant="contained"
-        color="primary"
         type="submit"
         className={styles.button}
       >

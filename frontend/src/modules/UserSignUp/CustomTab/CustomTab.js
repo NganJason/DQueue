@@ -5,20 +5,19 @@ import { Tabs, Tab } from "@material-ui/core";
 
 const CustomTab = ({ tabIndex, handleChange, tabs }) => {
   return (
-    <div>
+    <>
       <Tabs
-        indicatorColor="primary"
         value={tabIndex}
         onChange={handleChange}
-        textColor="primary"
         variant="fullWidth"
         className={styles.tabs}
+        classes={{root: styles.tabsRoot, indicator: styles.tabsIndicator}}
       >
-        {tabs.map((tab) => (
-          <Tab label={tab} />
+        {tabs.map((tab, index) => (
+          <Tab label={tab} key={index} className={styles.tabStyle} classes={{root: styles.singleTabRoot, wrapper: styles.singleTabWrapper}}/>
         ))}
       </Tabs>
-    </div>
+    </>
   );
 };
 

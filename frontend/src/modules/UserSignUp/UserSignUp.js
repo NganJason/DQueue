@@ -5,9 +5,11 @@ import CustomTab from "./CustomTab/CustomTab";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
 import { Grid, Paper } from "@material-ui/core";
+import { useParams } from "react-router-dom";
 
 const UserSignUp = () => {
-  const [tabIndex, setTabIndex] = useState(0);
+  const {action} = useParams();
+  const [tabIndex, setTabIndex] = useState(action === "in" ? 0 : 1);
 
   const handleChange = (e, newIndex) => {
     setTabIndex(newIndex);
@@ -25,10 +27,10 @@ const UserSignUp = () => {
           <CustomTab
             tabIndex={tabIndex}
             handleChange={handleChange}
-            tabs={["Login", "Signup"]}
+            tabs={["LogIn", "Sign Up"]}
           />
 
-          {tabIndex == 0 ? <Login /> : <SignUp />}
+          {tabIndex === 0 ? <Login /> : <SignUp />}
         </Paper>
       </Grid>
     </Grid>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Popover, Button, Divider } from "@material-ui/core";
+import { Grid, Popover, Button } from "@material-ui/core";
 import CheckBoxGrid from "../CheckBoxGrid/CheckBoxGrid";
 import SubtitleTag from "../SubtitleTag/SubtitleTag";
 import { filterOptions } from "../../../constants/tempDB";

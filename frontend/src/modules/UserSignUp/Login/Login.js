@@ -4,40 +4,38 @@ import { loginFormConst } from "../../../constants/formConstant";
 import styles from "./Login.module.scss";
 
 import CustomButton from "../../../common/modules/CustomButton/CustomButton";
-import CustomTextField from "../CustomTextField/CustomTextField";
-import SubtitleTag from "../../BrowsePage/SubtitleTag/SubtitleTag";
+import CustomTextField from "../../../common/modules/CustomTextField/CustomTextField";
+import { Typography } from "@material-ui/core";
 
 const Login = () => {
   const fieldNames = loginFormConst().map((field) => field.label);
 
   const [loginDetails, setLoginDetails] = useState(initObjFromArr(fieldNames));
 
-  const [visibility, setVisibility] = useState(false);
-
   const changeHandler = (key) => (event) => {
     setLoginDetails({ ...loginDetails, [key]: event.target.value });
   };
 
-  const changeVisibility = () => {
-    setVisibility(!visibility);
-  };
-
   return (
     <div className={styles.formDiv}>
-      <SubtitleTag header="h4" subtitle="Welcome!" />
-      <SubtitleTag header="h6" subtitle="Login to continue" />
+      <Typography variant="h4">Welcome</Typography>
+      <Typography variant="h6">Login to continue</Typography>
+      <br/>
 
       <form>
-        {loginFormConst(changeVisibility, visibility).map((obj) => {
+        {loginFormConst().map((obj, index) => {
           return (
             <CustomTextField
-              attr={obj}
-              changeHandler={changeHandler}
-              value={loginDetails}
+              key={index}
+              label={obj.label}
+              type={obj.type}
+              onChange={changeHandler(obj.label)}
+              value={loginDetails[obj.label]}
+              className={styles.fieldStyles}
             />
           );
         })}
-        <CustomButton title="Log in" />
+        <CustomButton title="Login" />
       </form>
     </div>
   );

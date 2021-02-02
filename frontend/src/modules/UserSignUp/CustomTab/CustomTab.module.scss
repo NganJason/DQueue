@@ -1,4 +1,24 @@
+@import "../../../../public/styles/colors.scss";
+
 .tabs {
-  background-color: #f6c065;
+  background-color: $light-orange;
+  border-top-right-radius: inherit;
+  border-top-left-radius: inherit;
+  margin-top: 10px;
+}
+
+.tabsRoot .tabsIndicator{
+  background-color: $dark-red;
+}
+
+.tabsRoot{
+  font-weight: bolder;
+}
+
+.tabStyle{
   height: 4rem;
+}
+
+.singleTabRoot .singleTabWrapper{
+  font-weight: 550;
 }

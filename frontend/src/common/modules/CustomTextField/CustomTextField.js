@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import styles from "./CustomTextField.module.scss";
 
-export default function CustomTextField({value, id, label, type, onChange, disabled, error, helperText, name, required, fullWidth}) {
+export default function CustomTextField({value, id, label, type, onChange, disabled, error, helperText, name, required, fullWidth, className}) {
   return (
     <TextField
     value={value}
@@ -19,7 +19,7 @@ export default function CustomTextField({value, id, label, type, onChange, disab
     
     //Style properties
     variant="outlined"
-    className={styles.inputField}
+    className={`${styles.inputField} ${className}`}
     InputLabelProps={{
         classes: {
         root: styles.labelRoot,

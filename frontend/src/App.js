@@ -21,7 +21,7 @@ function App() {
           <Route path="/merchant/:name" component={MerchantPage} />
           <Route path="/merchant-sign-up" component={MerchantSignUp}/>
           <Route path="/browse" component={BrowsePage} />
-          <Route path="/signup" component={UserSignUp} />
+          <Route path="/sign/:action" component={UserSignUp} />
         </Switch>
       </Provider>
     </Router>

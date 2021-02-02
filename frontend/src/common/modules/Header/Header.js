@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Header(props) {
   return (
-    <div className={styles.navBar}>
+    <div>
       <AppBar className={styles.navBar} position="static">
         <Toolbar>
           <Typography variant="h4" className={styles.navBarTitle}>
@@ -13,12 +13,10 @@ export default function Header(props) {
               DQueue
             </Link>
           </Typography>
-          <Button variant="contained" className={styles.navBarBtn}>
-            <Link className={styles.navBarHomeLink} to="/signup">
+          <Button variant="contained" className={styles.navBarBtn} component={Link} to="/sign/in">
               Login
-            </Link>
           </Button>
-          <Button variant="contained" className={styles.navBarBtn}>
+          <Button variant="contained" className={styles.navBarBtn} component={Link} to="/sign/up">
             Sign Up
           </Button>
         </Toolbar>

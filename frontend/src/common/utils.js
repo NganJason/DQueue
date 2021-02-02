@@ -1,8 +1,7 @@
 import React from "react";
 
 export function initObjFromArr(arr){
-  var init_obj = {};
-
+  const init_obj = {};
   arr.map((obj_name) => init_obj[obj_name] = "");
 
   return init_obj;

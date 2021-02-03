@@ -8,7 +8,6 @@ import errorHandler from "./handlers/errorHandler.js";
 
 const PORT = config.port;
 const mongoUri = config.mongoUri;
-const session_secret = config.sessionSecret;
 
 async function run() {
   try {

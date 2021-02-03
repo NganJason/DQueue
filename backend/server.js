@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import config from "./config.js";
 import app from "./app.js";
 import userRouter from "./routes/userRouter.js";
+import errorHandler from "./handlers/errorHandler.js";
 
 const PORT = config.port;
 const mongoUri = config.mongoUri;
@@ -18,6 +19,12 @@ async function run() {
     });
     console.log("Successfully connected to database!");
 
+    // Routes
+    app.use("/user", userRouter);
+
+    // Error Handler (Must be last piece of middleware)
+    app.use(errorHandler);
+
     // Listen to port
     app.listen(PORT, (err) => {
       if (err) throw err;
@@ -26,9 +33,6 @@ async function run() {
   } catch (error) {
     console.log(error);
   }
-
-  // Routes
-  app.use("/user", userRouter);
 }
 
 run();

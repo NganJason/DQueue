@@ -15,7 +15,7 @@ router.post("/signup", signupHandler);
 
 router.post("/forgotPassword", forgotPasswordHandler);
 
-router.post("/resetPassword", resetPassword);
+router.post("/resetPassword/:resetToken", resetPassword);
 
 router.get("/private-test", isAuthenticated, privateHandler);
 

@@ -19,9 +19,6 @@ async function run() {
     });
     console.log("Successfully connected to database!");
 
-    // For parsing cookies
-    app.use(cookieParser());
-
     // Routes
     app.use("/user", userRouter);
 

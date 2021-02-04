@@ -1,5 +1,6 @@
 import "dotenv/config.js";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 
 import config from "./config.js";
 import app from "./app.js";
@@ -17,6 +18,9 @@ async function run() {
       useUnifiedTopology: true,
     });
     console.log("Successfully connected to database!");
+
+    // For parsing cookies
+    app.use(cookieParser());
 
     // Routes
     app.use("/user", userRouter);

@@ -107,5 +107,6 @@ export const privateHandler = async (req, res, next) => {
 
 const sendJWTtoken = (user, statusCode, res) => {
   const token = user.getSignedToken();
+  res.cookie("token", token, { maxAge: 900000, httpOnly: true });
   res.status(statusCode).json({ success: true, token });
 };

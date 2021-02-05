@@ -1,0 +1,30 @@
+@import "../../../../public/styles/colors.scss";
+@import "../../../../public/styles//layouts.scss";
+
+//Styles for material ui input field
+div .labelRoot.labelFocusedColor {
+  color: $black;
+}
+
+//Need many selectors to increase specificity above default material UI colors
+div .inputRoot.fieldFocusedColor .notchedOutline {
+  border-color: $light-orange;
+}
+
+.textField {
+  width: 100%;
+}
+
+.dayTimeField {
+  margin: 15px auto;
+}
+
+.selectFieldGridItem {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.select.selectRoot.selectOutlined {
+  padding-left: 0;
+  padding-right: 0;
+}

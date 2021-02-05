@@ -1,4 +1,4 @@
-import { Button, Grid, Paper, Typography } from "@material-ui/core";
+import { Button, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import styles from "./ButtonGrid.module.scss";
 
@@ -51,7 +51,7 @@ function ButtonGridRow(props) {
 }
 
 function ButtonGridItem(props) {
-  const { row, col, rows, cols } = props;
+  const { row, col, cols } = props;
   let item = props.items[row * cols + col];
   return (
     <Grid item className={styles.buttonGridItem} xs={4} sm={3} md={2} xl={1}>

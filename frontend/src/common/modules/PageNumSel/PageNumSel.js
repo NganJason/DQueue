@@ -15,7 +15,7 @@ export default function PageNumSel(props) {
         })}
 
         <Button>
-          <Link to="browse">View All</Link>
+          <Link className={styles.viewAllLink} to="browse">View All</Link>
         </Button>
       </ButtonGroup>
     </div>

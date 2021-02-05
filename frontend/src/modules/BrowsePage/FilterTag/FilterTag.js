@@ -12,7 +12,7 @@ const FilterTag = ({ title, updateFilter }) => {
       <Fab
         aria-label={title}
         component="div"
-        disableRipple="true"
+        disableRipple={true}
         size="medium"
         variant="extended"
         onClick={tagClickHandler}

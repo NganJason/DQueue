@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Popover } from "@material-ui/core";
+import { Grid, Popover, Button } from "@material-ui/core";
 import CheckBoxGrid from "../CheckBoxGrid/CheckBoxGrid";
 import SubtitleTag from "../SubtitleTag/SubtitleTag";
 import { filterOptions } from "../../../constants/tempDB";
@@ -10,37 +10,41 @@ const FilterPopOver = ({
   setPopOverAnchor,
   filterState,
   updateFilter,
+  windowDimensions
 }) => {
   const popOverCloseHandler = () => {
-    setPopOverAnchor(null);
+    setPopOverAnchor(false);
   };
 
   return (
     <div>
       <Popover
-        open={Boolean(popOverAnchor)}
+        open={popOverAnchor}
         onClose={popOverCloseHandler}
-        anchorEl={popOverAnchor}
-        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-        transformOrigin={{ vertical: "top", horizontal: "left" }}
+        anchorReference="anchorPosition"
+        anchorPosition={{ left: windowDimensions.width / 2, top: windowDimensions.height / 2 }}
+        transformOrigin={{ vertical: "center", horizontal: "center" }}
       >
+        <Button className={styles.closeButton} onClick={popOverCloseHandler}>
+          Close
+        </Button>
         <Grid
           container
           direction="column"
           justify="flex-start"
-          className={styles.filterPopOverDiv}
+          className={`${styles.filterPopOverDiv} ${windowDimensions.width <= 800 ? styles.mobilePopOverDiv : undefined}`}
         >
           {Object.keys(filterOptions).map((key, index) => {
             return (
-              <>
-                <SubtitleTag key={index} subtitle={key} />
+              <Grid item key={index}>
+                <SubtitleTag subtitle={key} />
                 <CheckBoxGrid
-                  key={index}
                   options={filterOptions[key]}
                   filterState={filterState}
                   updateFilter={updateFilter}
                 />
-              </>
+                {index < Object.keys(filterOptions).length - 1 && <br />}
+              </Grid>
             );
           })}
         </Grid>

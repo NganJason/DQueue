@@ -5,16 +5,18 @@ import { Link } from "react-router-dom";
 
 export default function Header(props) {
   return (
-    <div className={styles.navBar}>
+    <div>
       <AppBar className={styles.navBar} position="static">
         <Toolbar>
           <Typography variant="h4" className={styles.navBarTitle}>
-            <Link className={styles.navBarHomeLink} to="/">DQueue</Link>
+            <Link className={styles.navBarHomeLink} to="/">
+              DQueue
+            </Link>
           </Typography>
-          <Button variant="contained" className={styles.navBarBtn}>
-            Login
+          <Button variant="contained" className={styles.navBarBtn} component={Link} to="/sign/in">
+              Login
           </Button>
-          <Button variant="contained" className={styles.navBarBtn}>
+          <Button variant="contained" className={styles.navBarBtn} component={Link} to="/sign/up">
             Sign Up
           </Button>
         </Toolbar>

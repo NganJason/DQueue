@@ -1,6 +1,5 @@
 import "dotenv/config.js";
 import mongoose from "mongoose";
-import cookieParser from "cookie-parser";
 
 import config from "./config.js";
 import app from "./app.js";

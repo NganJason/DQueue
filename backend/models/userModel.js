@@ -25,8 +25,11 @@ const userSchema = new Schema(
     },
     first_name: String,
     last_name: String,
+    is_admin: {
+      type: String,
+      default: false,
+    },
     resetPasswordToken: String,
-    resetPasswordExpire: Date,
   },
   { timestamps: true }
 );
@@ -64,16 +67,14 @@ userSchema.methods.getSignedToken = function () {
 
 // Method to get reset password token
 userSchema.methods.getResetPasswordToken = function () {
-  const resetToken = crypto.randomBytes(20).toString("hex");
+  const token = crypto.randomBytes(20).toString("hex");
 
-  this.resetPasswordToken = crypto
-    .createHash("sha256")
-    .update(resetToken)
-    .digest("hex");
+  const signedToken = jwt.sign({ token: token }, process.env.JWT_SECRET, {
+    expiresIn: process.env.RESET_EXPIRE,
+  });
 
-  // Token only available for 10mins
-  this.resetPasswordExpire = Date.now() + 10 * (60 * 1000);
-  return resetToken;
+  this.resetPasswordToken = token;
+  return signedToken;
 };
 
 export const User = mongoose.model("User", userSchema);

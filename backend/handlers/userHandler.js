@@ -1,6 +1,34 @@
-import { User } from "../models/userModel.js";
-import ErrorResponse from "../utils/errorResponse.js";
 import crypto from "crypto";
+import jwt from "jsonwebtoken";
+
+import ErrorResponse from "../utils/errorResponse.js";
+import { User } from "../models/userModel.js";
+
+export const signupHandler = async (req, res, next) => {
+  const {
+    email,
+    password,
+    first_name,
+    last_name,
+    contact_no,
+    is_admin,
+  } = req.body;
+
+  try {
+    const user = await User.create({
+      email,
+      password,
+      first_name,
+      last_name,
+      contact_no,
+      is_admin,
+    });
+
+    sendJWTtoken(user, 201, res);
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const loginHandler = async (req, res, next) => {
   const { email, password } = req.body;
@@ -28,19 +56,10 @@ export const loginHandler = async (req, res, next) => {
   }
 };
 
-export const signupHandler = async (req, res, next) => {
-  const { email, password, first_name, last_name, contact_no } = req.body;
-
+export const logoutHandler = (req, res, next) => {
   try {
-    const user = await User.create({
-      email,
-      password,
-      first_name,
-      last_name,
-      contact_no,
-    });
-
-    sendJWTtoken(user, 201, res);
+    res.cookie("token", "", { maxAge: 1 });
+    res.status(200).json({ message: "Logged out successfully" });
   } catch (error) {
     next(error);
   }
@@ -56,29 +75,31 @@ export const forgotPasswordHandler = async (req, res, next) => {
       return next(new ErrorResponse("Email could not be found", 404));
     }
 
-    const resetToken = user.getResetPasswordToken();
+    const signedToken = user.getResetPasswordToken();
 
     await user.save();
 
-    const resetURL = `http://localhost:3000/passwordreset/${resetToken}`;
+    const resetURL = `http://localhost:3000/passwordreset/${signedToken}`;
 
     res.status(200).json({ success: true, message: resetURL });
   } catch (error) {
+    console.log("hi");
     next(error);
   }
 };
 
 export const resetPassword = async (req, res, next) => {
-  const resetPasswordToken = crypto
-    .createHash("sha256")
-    .update(req.params.resetToken)
-    .digest("hex");
+  const signedToken = req.params.signedToken;
 
   try {
-    const user = await findOne({
-      resetPasswordToken,
-      resetPasswordExpire: { $gt: Date.now() },
-    });
+    const decoded = jwt.verify(signedToken, process.env.JWT_SECRET);
+    var d = new Date();
+
+    if (decoded.exp < d.getTime() / 1000) {
+      return next(new ErrorResponse("Token expired", 400));
+    }
+
+    const user = await User.findOne({ resetPasswordToken: decoded.token });
 
     if (!user) {
       return next(new ErrorResponse("Invalid Reset Token", 400));
@@ -86,10 +107,11 @@ export const resetPassword = async (req, res, next) => {
 
     user.password = req.body.password;
     user.resetPasswordToken = undefined;
-    user.resetPasswordExpire = undefined;
 
     await user.save();
 
+    // Sign user out after password reset
+    res.cookie("token", "", { maxAge: 1 });
     res.status(201).json({
       success: true,
       data: "Password Reset Success",

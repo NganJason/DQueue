@@ -1,8 +1,27 @@
-class ErrorResponse extends Error {
+class ErrorWithCode extends Error {
   constructor(message, statusCode) {
     super(message);
-    this.statueCode = statusCode;
+    this.statusCode = statusCode;
   }
 }
 
-export default ErrorResponse;
+class BadRequestError extends ErrorWithCode {
+  constructor(message){
+    super(message, 400);
+  }
+}
+
+class NotFoundError extends ErrorWithCode {
+  constructor(message){
+    super(message, 404);
+  }
+}
+
+class UnauthorizedError extends ErrorWithCode {
+  constructor(message){
+    super(message, 401);
+  }
+}
+
+export default ErrorWithCode;
+export {BadRequestError, NotFoundError, UnauthorizedError};

@@ -6,7 +6,7 @@ import Paper from "@material-ui/core/Paper";
 import StepperBar from "../../../common/modules/StepperBar/StepperBar";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import {mobileThreshold} from "../../../common/utils";
+import { mobileThreshold } from "../../../common/utils";
 
 export default function DesktopStepper(props) {
   const { stepContent } = props;

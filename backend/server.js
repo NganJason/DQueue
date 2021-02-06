@@ -21,11 +21,10 @@ async function run() {
 
     // Routes
     app.use("/user", userRouter);
+    app.use("/restaurant", restaurantRouter);
 
     // Error Handler (Must be last piece of middleware)
     app.use(errorHandler);
-
-    app.use("/restaurant", restaurantRouter);
     
     // Listen to port
     app.listen(PORT, (err) => {

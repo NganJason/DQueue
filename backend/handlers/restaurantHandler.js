@@ -1,4 +1,5 @@
 import { Restaurant } from "../models/restaurantModel.js";
+import { NotFoundError } from "../utils/errorResponse.js";
 
 export const registerHandler = async (req, res, next) => {
     const { restaurantName, address1, address2, city, state, country, postCode, contact, email, openingHours, admin } = req.body;
@@ -39,7 +40,7 @@ export const retrieveHandler = async (req, res, next) => {
     const { restaurantName } = req.body;
     const restaurantObj = await Restaurant.findOne({ restaurantName });
     if (!restaurantObj)
-        return next(new Error(`No restaurant with name ${restaurantName} found`));
+        return next(new NotFoundError(`No restaurant with name ${restaurantName} found`));
 
     res.json({
         ...restaurantObj._doc,

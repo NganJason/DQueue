@@ -24,7 +24,7 @@ const CustomTab = ({ tabIndex, handleChange, tabs }) => {
               wrapper: styles.singleTabWrapper
             }}
             component={Link}
-            to={index == 0 ? "/sign/in" : "/sign/up"}
+            to={index === 0 ? "/sign/in" : "/sign/up"}
           />
         ))}
       </Tabs>

@@ -7,11 +7,6 @@ export const isAuthenticated = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    var d = new Date();
-
-    if (decoded.exp < d.getTime() / 1000) {
-      return next(new ErrorResponse("Token expired", 400));
-    }
 
     const user = await User.findById(decoded.id);
 

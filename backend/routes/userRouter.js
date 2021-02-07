@@ -6,15 +6,17 @@ import {
   forgotPasswordHandler,
   resetPassword,
   logoutHandler,
+  checkAuthHandler,
 } from "../handlers/userHandler.js";
 import { isAuthenticated } from "../middleware/auth.js";
 var router = express.Router();
 
-router.post("/signup", signupHandler);
-router.post("/login", loginHandler);
+router.get("/checkAuth", isAuthenticated, checkAuthHandler);
 router.get("/logout", logoutHandler);
+router.get("/private-test", isAuthenticated, privateHandler);
+
+router.post("/signup", signupHandler);
 router.post("/forgotPassword", forgotPasswordHandler);
 router.post("/resetPassword/:signedToken", resetPassword);
-router.get("/private-test", isAuthenticated, privateHandler);
 
 export default router;

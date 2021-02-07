@@ -21,7 +21,6 @@ const userSchema = new Schema(
     },
     contact_no: {
       type: Number,
-      required: true,
     },
     first_name: String,
     last_name: String,

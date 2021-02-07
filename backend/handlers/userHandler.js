@@ -3,6 +3,12 @@ import jwt from "jsonwebtoken";
 import ErrorResponse from "../utils/errorResponse.js";
 import { User } from "../models/userModel.js";
 
+export const checkAuthHandler = async (req, res, next) => {
+  const token = req.cookies.token;
+  res.cookie("token", token, { maxAge: 900000, httpOnly: true });
+  res.status(200).json({ success: true, message: "You are logged in" });
+};
+
 export const signupHandler = async (req, res, next) => {
   const {
     email,
@@ -46,7 +52,7 @@ export const loginHandler = async (req, res, next) => {
     const isMatch = await user.matchPassword(password);
 
     if (!isMatch) {
-      return next(new ErrorResponse("Invalid credentials", 404));
+      return next(new ErrorResponse("Invalid password", 404));
     }
 
     sendJWTtoken(user, 200, res);
@@ -92,11 +98,6 @@ export const resetPassword = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(signedToken, process.env.JWT_SECRET);
-    var d = new Date();
-
-    if (decoded.exp < d.getTime() / 1000) {
-      return next(new ErrorResponse("Token expired", 400));
-    }
 
     const user = await User.findOne({ resetPasswordToken: decoded.token });
 
@@ -128,6 +129,7 @@ export const privateHandler = async (req, res, next) => {
 
 const sendJWTtoken = (user, statusCode, res) => {
   const token = user.getSignedToken();
+  user.password = "";
   res.cookie("token", token, { maxAge: 900000, httpOnly: true });
-  res.status(statusCode).json({ success: true, token });
+  res.status(statusCode).json({ success: true, token, user });
 };

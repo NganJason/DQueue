@@ -2,7 +2,7 @@ import React from "react";
 
 import Button from "@material-ui/core/Button";
 import styles from "./UploadPhotos.module.scss";
-import { mobileThreshold } from "../DesktopStepper/DesktopStepper";
+import {mobileThreshold} from "../../../common/utils";
 
 import ImageSummarySection from "../../../common/modules/ImageSummarySection/ImageSummarySection";
 

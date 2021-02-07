@@ -7,7 +7,7 @@ import BasicInfoFields from "./BasicInfoFields/BasicInfoFields";
 import OpeningHours from "./OpeningHours/OpeningHours";
 import UploadPhotos from "./UploadPhotos/UploadPhotos";
 import Review from "./Review/Review";
-import { generateStepContent } from "./StepContent";
+import { generateStepContent } from "../MerchantSignUp/DesktopStepper/StepContent";
 
 export default function MerchantSignUp() {
   //Get width for determining whether to use mobile or desktop stepper for signup page

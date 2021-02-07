@@ -1,7 +1,13 @@
 import jwt from "jsonwebtoken";
 
-import {UnauthorizedError, BadRequestError, NotFoundError} from "../utils/errorResponse.js"
+import {
+  UnauthorizedError,
+  BadRequestError,
+  NotFoundError,
+  DuplicateFieldError,
+} from "../utils/errorResponse.js";
 import { User } from "../models/userModel.js";
+import { Queue } from "../models/queueModel.js";
 
 export const signupHandler = async (req, res, next) => {
   const {
@@ -116,16 +122,66 @@ export const resetPassword = async (req, res, next) => {
 };
 
 export const privateHandler = async (err, req, res, next) => {
-  if(err)
-    return next(err);
+  if (err) return next(err);
 
   res
     .status(200)
     .json({ success: true, message: "You have access to protected route" });
 };
 
+export const enterQueueHandler = async (req, res, next) => {
+  const { userID, restaurantID, pax } = req.body;
+
+  try {
+    const user = await User.findById(userID);
+    // console.log(user);
+
+    if (!user) {
+      return next(new NotFoundError("Invalid user"));
+    }
+
+    const restaurant = await Restaurant.findById(restaurantID);
+    console.log(restaurant);
+    if (!restaurant) {
+      return next(new NotFoundError("Invalid restaurant"));
+    }
+
+    const isInQueue = await Queue.findOne({
+      user: userID,
+      restaurant: restaurantID,
+    });
+
+    if (isInQueue) {
+      next(new DuplicateFieldError("User is already in queue"));
+    }
+
+    const queue = await Queue.create({
+      restaurant: restaurantID,
+      user: userID,
+      pax: pax,
+      enter_queue_time: new Date().getTime(),
+      state: 0,
+    });
+    res.json(queue);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const sendJWTtoken = (user, statusCode, res) => {
   const token = user.getSignedToken();
   res.cookie("token", token, { maxAge: 900000, httpOnly: true });
   res.status(statusCode).json({ success: true, token });
+};
+
+const getQueueNumber = async (queue) => {
+  const queuing_users = await Queue.find({
+    $and: [
+      { restaurant: queue.restaurant },
+      { enter_queue_time: { $lt: queue.enter_queue_time } },
+      { state: 0 },
+    ],
+  });
+
+  console.log(queuing_users);
 };

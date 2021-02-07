@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import config from "./config.js";
 import app from "./app.js";
 import userRouter from "./routes/userRouter.js";
+import restaurantRouter from "./routes/restaurantRouter.js";
 import errorHandler from "./handlers/errorHandler.js";
 
 const PORT = config.port;
@@ -19,7 +20,8 @@ async function run() {
     console.log("Successfully connected to database!");
 
     // Routes
-    app.use("/api/user", userRouter);
+    app.use("/user", userRouter);
+    app.use("/api/restaurant", restaurantRouter);
 
     // Error Handler (Must be last piece of middleware)
     app.use(errorHandler);

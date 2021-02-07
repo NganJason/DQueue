@@ -6,7 +6,8 @@ import Paper from "@material-ui/core/Paper";
 import StepperBar from "../../../common/modules/StepperBar/StepperBar";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { mobileThreshold } from "../../../common/utils";
+
+export const mobileThreshold = 700;
 
 export default function DesktopStepper(props) {
   const { stepContent } = props;
@@ -30,7 +31,7 @@ export default function DesktopStepper(props) {
     <div className={styles.formDiv}>
       <Paper
         className={`${styles.formPaper} ${props.width <= mobileThreshold && styles.mobileFormPaper}`}
-        elevation={props.width <= mobileThreshold ? 0 : undefined}
+        elevation={props.width <= 700 ? 0 : undefined}
       >
         <StepperBar activeStep={activeStep} stepContent={stepContent} />
         <br />

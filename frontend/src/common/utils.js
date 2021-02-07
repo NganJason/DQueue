@@ -28,5 +28,3 @@ export function useWindowDimensions() {
 
   return windowDimensions;
 }
-
-export const mobileThreshold = 700;

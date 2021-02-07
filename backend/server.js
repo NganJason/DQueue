@@ -7,8 +7,8 @@ import userRouter from "./routes/userRouter.js";
 import restaurantRouter from "./routes/restaurantRouter.js";
 import errorHandler from "./handlers/errorHandler.js";
 
-const PORT = config.port
-const mongoUri = config.mongoUri
+const PORT = config.port;
+const mongoUri = config.mongoUri;
 
 async function run() {
   try {
@@ -21,11 +21,11 @@ async function run() {
 
     // Routes
     app.use("/user", userRouter);
-    app.use("/restaurant", restaurantRouter);
+    app.use("/api/restaurant", restaurantRouter);
 
     // Error Handler (Must be last piece of middleware)
     app.use(errorHandler);
-    
+
     // Listen to port
     app.listen(PORT, (err) => {
       if (err) throw err;

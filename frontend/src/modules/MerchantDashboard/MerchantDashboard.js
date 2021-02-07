@@ -14,10 +14,10 @@ export default function MerchantDashboard(props) {
     const { width } = useWindowDimensions();
     const { params } = props.match;
 
-    const [value, setValue] = React.useState(1);
+    const [currTab, setCurrTab] = React.useState(1);
 
     const handleChange = (event, newValue) => {
-        setValue(newValue);
+        setCurrTab(newValue);
     };
 
     return (
@@ -25,13 +25,13 @@ export default function MerchantDashboard(props) {
             <Paper className={`${width <= mobileThreshold && styles.mobileQueueList} ${styles.restaurantNamePaper}`} elevation={3} square={width <= mobileThreshold}>
                 <div className={styles.restaurantName}>
                     <Typography variant="h3">
-                        {params.id}
+                        {params.name}
                     </Typography>
                 </div>
             </Paper>
             <Paper className={`${styles.queueListPaper} ${width <= mobileThreshold && styles.mobileQueueList}`} elevation={3} square={width <= mobileThreshold}>
                 <Tabs
-                    value={value}
+                    value={currTab}
                     onChange={handleChange}
                     orientation="vertical"
                     classes={{

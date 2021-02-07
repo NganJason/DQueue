@@ -1,6 +1,10 @@
 import jwt from "jsonwebtoken";
 
-import ErrorResponse from "../utils/errorResponse.js";
+import {
+  UnauthorizedError,
+  BadRequestError,
+  NotFoundError,
+} from "../utils/errorResponse.js";
 import { User } from "../models/userModel.js";
 
 export const checkAuthHandler = async (req, res, next) => {
@@ -39,20 +43,20 @@ export const loginHandler = async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return next(new ErrorResponse("Please provide an email and password", 400));
+    return next(new BadRequestError("Please provide an email and password"));
   }
 
   try {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return next(new ErrorResponse("Invalid credentials", 404));
+      return next(new UnauthorizedError("Invalid credentials"));
     }
 
     const isMatch = await user.matchPassword(password);
 
     if (!isMatch) {
-      return next(new ErrorResponse("Invalid password", 404));
+      return next(new UnauthorizedError("Invalid credentials"));
     }
 
     sendJWTtoken(user, 200, res);
@@ -77,7 +81,7 @@ export const forgotPasswordHandler = async (req, res, next) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return next(new ErrorResponse("Email could not be found", 404));
+      return next(new NotFoundError("Email could not be found"));
     }
 
     const signedToken = user.getResetPasswordToken();
@@ -102,7 +106,7 @@ export const resetPassword = async (req, res, next) => {
     const user = await User.findOne({ resetPasswordToken: decoded.token });
 
     if (!user) {
-      return next(new ErrorResponse("Invalid Reset Token", 400));
+      return next(new BadRequestError("Invalid Reset Token"));
     }
 
     user.password = req.body.password;
@@ -121,7 +125,9 @@ export const resetPassword = async (req, res, next) => {
   }
 };
 
-export const privateHandler = async (req, res, next) => {
+export const privateHandler = async (err, req, res, next) => {
+  if (err) return next(err);
+
   res
     .status(200)
     .json({ success: true, message: "You have access to protected route" });

@@ -9,17 +9,24 @@ import Typography from "@material-ui/core/Typography";
 import { mobileThreshold } from "../../../common/utils";
 
 export default function DesktopStepper(props) {
-  const { stepContent } = props;
+  const { stepContent, verifier } = props;
   const [activeStep, setActiveStep] = React.useState(0);
 
   function handleNext() {
-    setActiveStep((prevActiveStep) => {
-      if (prevActiveStep < stepContent.length - 1)
-        return prevActiveStep + 1;
+    //Trigger current step's verifier
+    let valid = true;
+    if (verifier !== undefined)
+      valid = verifier();
 
-      else
-        return prevActiveStep;
-    });
+    if (valid) {
+      setActiveStep((prevActiveStep) => {
+        if (prevActiveStep < stepContent.length - 1)
+          return prevActiveStep + 1;
+
+        else
+          return prevActiveStep;
+      });
+    }
   };
 
   function handleBack() {

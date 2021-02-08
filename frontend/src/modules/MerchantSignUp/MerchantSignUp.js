@@ -8,6 +8,9 @@ import OpeningHours from "./OpeningHours/OpeningHours";
 import UploadPhotos from "./UploadPhotos/UploadPhotos";
 import Review from "./Review/Review";
 import { generateStepContent } from "./StepContent";
+import { sortOperatingHours } from "./SortOperatingHours";
+
+import ApiService from "../../common/services/api.service.js";
 
 export default function MerchantSignUp() {
   //Get width for determining whether to use mobile or desktop stepper for signup page
@@ -16,6 +19,14 @@ export default function MerchantSignUp() {
   const [operatingHours, setOperatingHours] = React.useState([]);
   const [imageArr, setImageArr] = React.useState([]);
   const [verifier, setVerifier] = React.useState();
+
+  const submitForm = React.useCallback(async () => {
+    const sortedOperatingHours = sortOperatingHours(operatingHours);
+    const concatData = {...merchantInfo, openingHours: sortedOperatingHours, admin: "false"};
+    const res = await ApiService.post("/restaurant/register", concatData);
+    
+    return res;
+  }, [merchantInfo, operatingHours]);
 
   const stepContent = [
     generateStepContent(
@@ -57,7 +68,7 @@ export default function MerchantSignUp() {
 
   return (
     <>
-      <DesktopStepper stepContent={stepContent} width={width} verifier={verifier} />
+      <DesktopStepper stepContent={stepContent} width={width} verifier={verifier} submit={submitForm}/>
     </>
   );
 }

@@ -8,26 +8,7 @@ import Paper from '@material-ui/core/Paper';
 
 import styles from "./Review.module.scss";
 import { daysArr as daysName, timeValToText } from "../OpeningHours/DaysAndTimes";
-
-function sortOperatingHours(operatingHours){
-  const sortedOperatingHours = [...operatingHours];
-  sortedOperatingHours.sort((a, b) => {
-    return a.day - b.day || a.opening - b.opening;
-  });
-  
-  const dayIndexedOperatingHours = [];
-  dayIndexedOperatingHours.length = 7;
-  
-  sortedOperatingHours.forEach(item => {
-    if(dayIndexedOperatingHours[item.day] === undefined)
-      dayIndexedOperatingHours[item.day] = [{opening: item.opening, closing: item.closing}];
-    
-    else
-      dayIndexedOperatingHours[item.day].push({opening: item.opening, closing: item.closing});
-  })
-  
-  return dayIndexedOperatingHours;
-}
+import {sortOperatingHours} from "../SortOperatingHours.js";
 
 export default function Review(props) {
   const { merchantInfo, operatingHours } = props;

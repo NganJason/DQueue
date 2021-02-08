@@ -9,10 +9,18 @@ import Typography from "@material-ui/core/Typography";
 import { mobileThreshold } from "../../../common/utils";
 
 export default function DesktopStepper(props) {
-  const { stepContent, verifier } = props;
+  const { stepContent, verifier, submit } = props;
   const [activeStep, setActiveStep] = React.useState(0);
 
-  function handleNext() {
+  async function handleNext() {
+    if(activeStep === stepContent.length - 1)
+    {
+      const res = await submit();
+      //Redirect on register
+      if(res.status === 200)
+        console.log("Restaurant Registered");
+    }
+
     //Trigger current step's verifier
     let valid = true;
     if (verifier !== undefined)

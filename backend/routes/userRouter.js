@@ -15,8 +15,9 @@ router.get("/checkAuth", isAuthenticated, checkAuthHandler);
 router.get("/logout", logoutHandler);
 router.get("/private-test", isAuthenticated, privateHandler);
 
-router.post("/signup", signupHandler);
+router.post("/login", loginHandler);
 router.post("/forgotPassword", forgotPasswordHandler);
 router.post("/resetPassword/:signedToken", resetPassword);
+router.post("/signup", signupHandler);
 
 export default router;

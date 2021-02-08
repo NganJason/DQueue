@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
 import CustomTextField from "../../../common/modules/CustomTextField/CustomTextField";
 
@@ -10,20 +10,11 @@ import { useSetStepVerifier } from "../UseSetStepVerifier.js";
 export default function BasicInfoFields(props) {
   const { merchantInfo, setMerchantInfo, setVerifier } = props;
   const [fieldPropsState, setFieldProps] = React.useState(fieldProps);
-
-  function changeHandler(event) {
-    setMerchantInfo((prevVal) => {
-      const newItem = { ...prevVal };
-      newItem[event.target.id] = event.target.value;
-
-      return newItem;
-    });
-  }
-
-  //Function to verify all info fields
-  const verifier = () => {
+  
+  /* Setup form verifier */
+  const verifier = React.useCallback(() => {
     let allValid = true;
-
+    
     //Inefficient deep copy of old object
     const newFieldPropsState = JSON.parse(JSON.stringify(fieldProps));
     Object.keys(newFieldPropsState).forEach(key => {
@@ -33,7 +24,7 @@ export default function BasicInfoFields(props) {
           newFieldPropsState[key].error = true;
           allValid = false;
         }
-
+        
         //If filled in but field is email, check that the field is a valid email
         else if (newFieldPropsState[key].type === "email") {
           if (!validateEmail(merchantInfo[key])) {
@@ -43,13 +34,21 @@ export default function BasicInfoFields(props) {
         }
       }
     })
-
+    
     setFieldProps(newFieldPropsState);
     return allValid;
-  }
+  }, [merchantInfo]);
 
-  //Set this form's verifier
-  useSetStepVerifier(verifier, setVerifier, [merchantInfo]);
+  useSetStepVerifier(verifier, setVerifier);
+  
+  function changeHandler(event) {
+    setMerchantInfo((prevVal) => {
+      const newItem = { ...prevVal };
+      newItem[event.target.id] = event.target.value;
+      
+      return newItem;
+    });
+  }
 
   return (
     <div className={styles.basicInfoDiv}>

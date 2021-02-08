@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { times, days } from "./DaysAndTimes";
 
 import styles from "./OpeningHours.module.scss";
@@ -110,8 +110,8 @@ export default function OpeningHours(props) {
   const { operatingHours, setOperatingHours, setVerifier } = props;
   const [errorFields, setErrorFields] = React.useState([]);
 
-  //Function to verify all filled in operating hours
-  const verifier = () => {
+  /* Setup form verifier */
+  const verifier = React.useCallback(() => {
     const errorFields = [];
 
     //i == each day
@@ -151,24 +151,24 @@ export default function OpeningHours(props) {
 
     setErrorFields(errorFields);
     return errorFields.length === 0;
-  }
+  }, [operatingHours]);
 
-  useSetStepVerifier(verifier, setVerifier, [operatingHours]);
+  useSetStepVerifier(verifier, setVerifier);
 
-
-  const clickHandler = () =>{
+  /* Setup form initial state and click handler */
+  const clickHandler = React.useCallback(() =>{
     setOperatingHours(prevVal => {
       const newVal = [...prevVal];
       newVal.push({ day: "", opening: "", closing: "" });
       return newVal;
     })
-  }
+  }, [setOperatingHours]);
 
   //Add first field if empty
-  useEffect(() => {
+  React.useEffect(() => {
     if (operatingHours.length === 0)
       clickHandler();
-  }, []);
+  }, [clickHandler, operatingHours.length]);
 
   return (
     <div>

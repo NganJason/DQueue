@@ -7,7 +7,10 @@ import {
   DuplicateFieldError,
 } from "../utils/errorResponse.js";
 import { User } from "../models/userModel.js";
+import { Restaurant } from "../models/restaurantModel.js";
 import { Queue } from "../models/queueModel.js";
+
+// ------------- Auth Handler -------------
 
 export const signupHandler = async (req, res, next) => {
   const {
@@ -88,7 +91,6 @@ export const forgotPasswordHandler = async (req, res, next) => {
 
     res.status(200).json({ success: true, message: resetURL });
   } catch (error) {
-    console.log("hi");
     next(error);
   }
 };
@@ -129,19 +131,20 @@ export const privateHandler = async (err, req, res, next) => {
     .json({ success: true, message: "You have access to protected route" });
 };
 
+// ------------- Queue Handler -------------
+
 export const enterQueueHandler = async (req, res, next) => {
   const { userID, restaurantID, pax } = req.body;
 
   try {
     const user = await User.findById(userID);
-    // console.log(user);
 
     if (!user) {
       return next(new NotFoundError("Invalid user"));
     }
 
     const restaurant = await Restaurant.findById(restaurantID);
-    console.log(restaurant);
+
     if (!restaurant) {
       return next(new NotFoundError("Invalid restaurant"));
     }
@@ -152,7 +155,7 @@ export const enterQueueHandler = async (req, res, next) => {
     });
 
     if (isInQueue) {
-      next(new DuplicateFieldError("User is already in queue"));
+      return next(new DuplicateFieldError("User is already in queue"));
     }
 
     const queue = await Queue.create({
@@ -162,9 +165,64 @@ export const enterQueueHandler = async (req, res, next) => {
       enter_queue_time: new Date().getTime(),
       state: 0,
     });
-    res.json(queue);
+
+    const queueNum = await getQueueNumber(queue);
+
+    if (queueNum instanceof Error) {
+      return next(new NotFoundError("Unable to find queue number"));
+    }
+
+    res.status(200).json({ queueNumber: queueNum });
   } catch (error) {
     next(error);
+  }
+};
+
+export const getQueueNumHandler = async (req, res, next) => {
+  const { restaurantID, userID } = req.body;
+
+  try {
+    const queue = await Queue.findOne({
+      restaurant: restaurantID,
+      user: userID,
+    });
+
+    const queueNum = await getQueueNumber(queue);
+
+    if (queueNum instanceof Error) {
+      return next(new NotFoundError("Unable to find queue number"));
+    }
+
+    res.status(200).json({ queueNumber: queueNum });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const queueStateHandler = async (req, res, next) => {
+  const { userID, restaurantID, queueState } = req.body;
+
+  try {
+    let queue = await Queue.findOne({
+      user: userID,
+      restaurant: restaurantID,
+    });
+
+    queue.state = queueState;
+
+    if (queueState === 2) {
+      queue.enter_restaurant_time = new Date().getTime();
+    } else if (queueState === 3) {
+      queue.exit_restaurant_time = new Date().getTime();
+    }
+
+    queue = await queue.save();
+
+    res
+      .status(200)
+      .json({ success: true, message: `Updated queue state to ${queueState}` });
+  } catch (error) {
+    return next(error);
   }
 };
 
@@ -175,13 +233,17 @@ const sendJWTtoken = (user, statusCode, res) => {
 };
 
 const getQueueNumber = async (queue) => {
-  const queuing_users = await Queue.find({
-    $and: [
-      { restaurant: queue.restaurant },
-      { enter_queue_time: { $lt: queue.enter_queue_time } },
-      { state: 0 },
-    ],
-  });
+  try {
+    const queuing_users = await Queue.find({
+      $and: [
+        { restaurant: queue.restaurant },
+        { enter_queue_time: { $lt: queue.enter_queue_time } },
+        { state: { $lte: 1 } },
+      ],
+    });
 
-  console.log(queuing_users);
+    return queuing_users.length;
+  } catch (error) {
+    return error;
+  }
 };

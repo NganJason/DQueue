@@ -114,37 +114,26 @@ export default function OpeningHours(props) {
   const verifier = React.useCallback(() => {
     const errorFields = [];
 
-    //i == each day
-    for (let i = 0; i < 7; ++i) {
-      //Extract fields with same day
-      const day = operatingHours.reduce((filtered, operatingHour, index) => {
-        if (operatingHour.day === i) {
-          //Each field's closing - opening > 0 and not empty, else error
-          if (operatingHour.closing - operatingHour.opening <= 0 || operatingHour.closing === "" || operatingHour.opening === "")
-            !errorFields.includes(index) && errorFields.push(index);
+    const indexedHours = operatingHours.map((item, index) => {
+      return {...item, index:index};
+    })
 
+    indexedHours.sort((a,b) => {
+        return a.day - b.day || a.opening - b.opening;
+    })
 
-          const newOperatingHour = { ...operatingHour, index: index };
-          filtered.push(newOperatingHour);
-        }
+    for(let i = 0; i < indexedHours.length; ++i){
+      //Row specific validation, if current row's closing is < opening, set error
+      if(indexedHours[i].closing - indexedHours[i].opening <= 0 || indexedHours[i].opening === "" || indexedHours[i].closing === "")
+        !errorFields.includes(indexedHours[i].index) && errorFields.push(indexedHours[i].index);
 
-        else if (operatingHour.day === "")
-          !errorFields.includes(index) && errorFields.push(index);
-
-        return filtered;
-      }, []);
-
-      //Sort all by opening time
-      const sortedDay = [...day];
-      sortedDay.sort((a, b) => {
-        return a.opening - b.opening;
-      });
-
-      //If previous closing > current opening, set both fields error
-      for (let j = 0; j < sortedDay.length - 1; ++j) {
-        if (sortedDay[j].closing - sortedDay[j + 1].opening > 0) {
-          !errorFields.includes(sortedDay[j].index) && errorFields.push(sortedDay[j].index);
-          !errorFields.includes(sortedDay[j + 1].index) && errorFields.push(sortedDay[j + 1].index);
+      if(i + 1 < indexedHours.length && indexedHours[i].day === indexedHours[i+1].day)
+      {
+        //If previous closing > current opening, set both fields error
+        if(indexedHours[i].closing - indexedHours[i + 1].opening > 0)
+        {
+          !errorFields.includes(indexedHours[i].index) && errorFields.push(indexedHours[i].index);
+          !errorFields.includes(indexedHours[i + 1].index) && errorFields.push(indexedHours[i + 1].index); 
         }
       }
     }

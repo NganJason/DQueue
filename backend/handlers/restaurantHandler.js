@@ -2,7 +2,6 @@ import { Restaurant } from "../models/restaurantModel.js";
 import { NotFoundError } from "../utils/errorResponse.js";
 
 export const registerHandler = async (req, res, next) => {
-    const { restaurantName, address1, address2, city, state, country, postCode, contact, email, openingHours, admin } = req.body;
     // const openingHoursFormat = [
     //     [
     //         { opening: 5, closing: 5 },
@@ -15,17 +14,17 @@ export const registerHandler = async (req, res, next) => {
 
     try {
         const newRestaurant = await Restaurant.create({
-            restaurantName,
-            address1,
-            address2,
-            city,
-            state,
-            country,
-            postCode,
-            contact,
-            email,
-            openingHours: JSON.stringify(openingHours),
-            admin
+            restaurantName: req.body["Restaurant Name"],
+            address1: req.body["Address Line 1"],
+            address2: req.body["Address Line 2"],
+            city: req.body["City"],
+            state: req.body["State"],
+            country: req.body["Country"],
+            postCode: req.body["Post Code"],
+            contact: req.body["Contact Number"],
+            email: req.body["Email"],
+            openingHours: JSON.stringify(req.body["openingHours"]),
+            admin: req.body["admin"]
         });
 
         res.sendStatus(200);

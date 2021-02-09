@@ -8,7 +8,7 @@ import {
 } from "../utils/errorResponse.js";
 import { User } from "../models/userModel.js";
 import { Restaurant } from "../models/restaurantModel.js";
-import { Queue } from "../models/queueModel.js";
+import { Queue, QUEUESTATE } from "../models/queueModel.js";
 
 // ------------- Auth Handler -------------
 
@@ -163,7 +163,7 @@ export const enterQueueHandler = async (req, res, next) => {
       user: userID,
       pax: pax,
       enter_queue_time: new Date().getTime(),
-      state: 0,
+      state: QUEUESTATE.WAITING,
     });
 
     const queueNum = await getQueueNumber(queue);
@@ -199,33 +199,6 @@ export const getQueueNumHandler = async (req, res, next) => {
   }
 };
 
-export const queueStateHandler = async (req, res, next) => {
-  const { userID, restaurantID, queueState } = req.body;
-
-  try {
-    let queue = await Queue.findOne({
-      user: userID,
-      restaurant: restaurantID,
-    });
-
-    queue.state = queueState;
-
-    if (queueState === 2) {
-      queue.enter_restaurant_time = new Date().getTime();
-    } else if (queueState === 3) {
-      queue.exit_restaurant_time = new Date().getTime();
-    }
-
-    queue = await queue.save();
-
-    res
-      .status(200)
-      .json({ success: true, message: `Updated queue state to ${queueState}` });
-  } catch (error) {
-    return next(error);
-  }
-};
-
 const sendJWTtoken = (user, statusCode, res) => {
   const token = user.getSignedToken();
   res.cookie("token", token, { maxAge: 900000, httpOnly: true });
@@ -238,7 +211,7 @@ const getQueueNumber = async (queue) => {
       $and: [
         { restaurant: queue.restaurant },
         { enter_queue_time: { $lt: queue.enter_queue_time } },
-        { state: { $lte: 1 } },
+        { state: { $lte: QUEUESTATE.NOTIFIED } },
       ],
     });
 

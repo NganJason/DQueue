@@ -1,6 +1,6 @@
 import { Restaurant } from "../models/restaurantModel.js";
 import { NotFoundError } from "../utils/errorResponse.js";
-import { Queue } from "../models/queueModel.js";
+import { Queue, QUEUESTATE } from "../models/queueModel.js";
 
 export const registerHandler = async (req, res, next) => {
   const {
@@ -67,8 +67,17 @@ export const getQueueListHandler = async (req, res, next) => {
 
   try {
     let queueList = await Queue.find({
-      $and: [{ restaurant: restaurantID }, { state: { $lte: 1 } }],
-    }).populate("user", ["email", "last_name", "first_name", "contact_no"]);
+      $and: [
+        { restaurant: restaurantID },
+        { state: { $lte: QUEUESTATE.NOTIFIED } },
+      ],
+    }).populate("user", [
+      "_id",
+      "email",
+      "last_name",
+      "first_name",
+      "contact_no",
+    ]);
 
     if (!queueList) {
       return next(new NotFoundError("Failed to get queue list"));
@@ -77,5 +86,36 @@ export const getQueueListHandler = async (req, res, next) => {
     res.status(200).json(queueList);
   } catch (error) {
     next(error);
+  }
+};
+
+export const updateQueueStateHandler = async (req, res, next) => {
+  const { userID, restaurantID, queueState } = req.body;
+
+  try {
+    let queue = await Queue.findOne({
+      user: userID,
+      restaurant: restaurantID,
+    });
+
+    if (!queue) {
+      return next(new NotFoundError("Cannot find user in queue"));
+    }
+
+    queue.state = queueState;
+
+    if (queueState === QUEUESTATE.ENTERED) {
+      queue.enter_restaurant_time = new Date().getTime();
+    } else if (queueState === QUEUESTATE.EXITED) {
+      queue.exit_restaurant_time = new Date().getTime();
+    }
+
+    queue = await queue.save();
+
+    res
+      .status(200)
+      .json({ success: true, message: `Updated queue state to ${queueState}` });
+  } catch (error) {
+    return next(error);
   }
 };

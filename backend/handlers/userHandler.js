@@ -12,6 +12,12 @@ import { Queue, QUEUESTATE } from "../models/queueModel.js";
 
 // ------------- Auth Handler -------------
 
+export const checkAuthHandler = async (req, res, next) => {
+  const token = req.cookies.token;
+  res.cookie("token", token, { maxAge: 900000, httpOnly: true });
+  res.status(200).json({ success: true, message: "You are logged in" });
+};
+
 export const signupHandler = async (req, res, next) => {
   const {
     email,
@@ -201,8 +207,9 @@ export const getQueueNumHandler = async (req, res, next) => {
 
 const sendJWTtoken = (user, statusCode, res) => {
   const token = user.getSignedToken();
+  user.password = "";
   res.cookie("token", token, { maxAge: 900000, httpOnly: true });
-  res.status(statusCode).json({ success: true, token });
+  res.status(statusCode).json({ success: true, token, user });
 };
 
 const getQueueNumber = async (queue) => {

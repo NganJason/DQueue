@@ -13,7 +13,7 @@ const getFilterState = (filterOptions) => {
 
   Object.keys(filterOptions).map((categories) => {
     return filterOptions[categories].map((option) => {
-      return filterState[option] = false;
+      return (filterState[option] = false);
     });
   });
 
@@ -37,10 +37,7 @@ const BrowsePage = () => {
         setPopOverAnchor={setPopOverAnchor}
         updateFilter={updateFilter}
       />
-      <Backdrop
-        open={popOverAnchor}
-        className={styles.backdrop}
-      ></Backdrop>
+      <Backdrop open={popOverAnchor} className={styles.backdrop}></Backdrop>
       <FilterPopOver
         filterState={filterState}
         popOverAnchor={popOverAnchor}

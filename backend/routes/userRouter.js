@@ -8,11 +8,13 @@ import {
   logoutHandler,
   enterQueueHandler,
   getQueueNumHandler,
+  checkAuthHandler,
 } from "../handlers/userHandler.js";
 import { isAuthenticated } from "../middleware/auth.js";
 var userRouter = express.Router();
 
 // Auth
+userRouter.get("/checkAuth", isAuthenticated, checkAuthHandler);
 userRouter.get("/logout", logoutHandler);
 userRouter.get("/private-test", isAuthenticated, privateHandler);
 

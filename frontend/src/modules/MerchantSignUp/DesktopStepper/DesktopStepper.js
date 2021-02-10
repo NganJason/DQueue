@@ -6,21 +6,35 @@ import Paper from "@material-ui/core/Paper";
 import StepperBar from "../../../common/modules/StepperBar/StepperBar";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-
-export const mobileThreshold = 700;
+import { mobileThreshold } from "../../../common/utils";
 
 export default function DesktopStepper(props) {
-  const { stepContent } = props;
+  const { stepContent, verifier, submit } = props;
   const [activeStep, setActiveStep] = React.useState(0);
 
-  function handleNext() {
-    setActiveStep((prevActiveStep) => {
-      if (prevActiveStep < stepContent.length - 1)
-        return prevActiveStep + 1;
+  async function handleNext() {
+    if(activeStep === stepContent.length - 1)
+    {
+      const res = await submit();
+      //Redirect on register
+      if(res.status === 200)
+        console.log("Restaurant Registered");
+    }
 
-      else
-        return prevActiveStep;
-    });
+    //Trigger current step's verifier
+    let valid = true;
+    if (verifier !== undefined)
+      valid = verifier();
+
+    if (valid) {
+      setActiveStep((prevActiveStep) => {
+        if (prevActiveStep < stepContent.length - 1)
+          return prevActiveStep + 1;
+
+        else
+          return prevActiveStep;
+      });
+    }
   };
 
   function handleBack() {
@@ -31,7 +45,7 @@ export default function DesktopStepper(props) {
     <div className={styles.formDiv}>
       <Paper
         className={`${styles.formPaper} ${props.width <= mobileThreshold && styles.mobileFormPaper}`}
-        elevation={props.width <= 700 ? 0 : undefined}
+        elevation={props.width <= mobileThreshold ? 0 : undefined}
       >
         <StepperBar activeStep={activeStep} stepContent={stepContent} />
         <br />

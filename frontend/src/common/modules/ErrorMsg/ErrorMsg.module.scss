@@ -1,0 +1,17 @@
+@import "../../../../public/styles/colors.scss";
+
+.msgDiv {
+  align-items: center;
+  background-color: $error-msg-color;
+  border-radius: 5px;
+  color: $error-red;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0.3rem 1rem;
+  width: 90%;
+}
+
+.closeIcon {
+  cursor: pointer;
+}

@@ -20,7 +20,7 @@ async function run() {
     console.log("Successfully connected to database!");
 
     // Routes
-    app.use("/user", userRouter);
+    app.use("/api/user", userRouter);
     app.use("/api/restaurant", restaurantRouter);
 
     // Error Handler (Must be last piece of middleware)

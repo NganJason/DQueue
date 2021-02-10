@@ -8,8 +8,8 @@ import { Grid, Paper } from "@material-ui/core";
 import { useParams } from "react-router-dom";
 
 const UserSignUp = () => {
-  const {action} = useParams();
-  const [tabIndex, setTabIndex] = useState(action === "in" ? 0 : 1);
+  const { user } = useParams();
+  const [tabIndex, setTabIndex] = useState(0);
 
   const handleChange = (e, newIndex) => {
     setTabIndex(newIndex);
@@ -30,7 +30,7 @@ const UserSignUp = () => {
             tabs={["Login", "Sign Up"]}
           />
 
-          {tabIndex === 0 ? <Login /> : <SignUp />}
+          {tabIndex === 0 ? <Login /> : <SignUp user={user} />}
         </Paper>
       </Grid>
     </Grid>

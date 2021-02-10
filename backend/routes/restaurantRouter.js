@@ -1,10 +1,16 @@
 import express from "express";
-import {registerHandler, retrieveHandler} from "../handlers/restaurantHandler.js";
-
+import {
+  getQueueListHandler,
+  registerHandler,
+  retrieveHandler,
+  updateQueueStateHandler,
+} from "../handlers/restaurantHandler.js";
 
 const restaurantRouter = express.Router();
 
-restaurantRouter.post("/register", registerHandler);
 restaurantRouter.get("/retrieve", retrieveHandler);
+restaurantRouter.get("/queueList", getQueueListHandler);
+restaurantRouter.post("/register", registerHandler);
+restaurantRouter.put("/updateQueueState", updateQueueStateHandler);
 
 export default restaurantRouter;

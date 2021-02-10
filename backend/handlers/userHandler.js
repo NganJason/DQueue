@@ -4,8 +4,13 @@ import {
   UnauthorizedError,
   BadRequestError,
   NotFoundError,
+  DuplicateFieldError,
 } from "../utils/errorResponse.js";
 import { User } from "../models/userModel.js";
+import { Restaurant } from "../models/restaurantModel.js";
+import { Queue, QUEUESTATE } from "../models/queueModel.js";
+
+// ------------- Auth Handler -------------
 
 export const checkAuthHandler = async (req, res, next) => {
   const token = req.cookies.token;
@@ -92,7 +97,6 @@ export const forgotPasswordHandler = async (req, res, next) => {
 
     res.status(200).json({ success: true, message: resetURL });
   } catch (error) {
-    console.log("hi");
     next(error);
   }
 };
@@ -133,9 +137,93 @@ export const privateHandler = async (err, req, res, next) => {
     .json({ success: true, message: "You have access to protected route" });
 };
 
+// ------------- Queue Handler -------------
+
+export const enterQueueHandler = async (req, res, next) => {
+  const { userID, restaurantID, pax } = req.body;
+
+  try {
+    const user = await User.findById(userID);
+
+    if (!user) {
+      return next(new NotFoundError("Invalid user"));
+    }
+
+    const restaurant = await Restaurant.findById(restaurantID);
+
+    if (!restaurant) {
+      return next(new NotFoundError("Invalid restaurant"));
+    }
+
+    const isInQueue = await Queue.findOne({
+      user: userID,
+      restaurant: restaurantID,
+    });
+
+    if (isInQueue) {
+      return next(new DuplicateFieldError("User is already in queue"));
+    }
+
+    const queue = await Queue.create({
+      restaurant: restaurantID,
+      user: userID,
+      pax: pax,
+      enter_queue_time: new Date().getTime(),
+      state: QUEUESTATE.WAITING,
+    });
+
+    const queueNum = await getQueueNumber(queue);
+
+    if (queueNum instanceof Error) {
+      return next(new NotFoundError("Unable to find queue number"));
+    }
+
+    res.status(200).json({ queueNumber: queueNum });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getQueueNumHandler = async (req, res, next) => {
+  const { restaurantID, userID } = req.body;
+
+  try {
+    const queue = await Queue.findOne({
+      restaurant: restaurantID,
+      user: userID,
+    });
+
+    const queueNum = await getQueueNumber(queue);
+
+    if (queueNum instanceof Error) {
+      return next(new NotFoundError("Unable to find queue number"));
+    }
+
+    res.status(200).json({ queueNumber: queueNum });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const sendJWTtoken = (user, statusCode, res) => {
   const token = user.getSignedToken();
   user.password = "";
   res.cookie("token", token, { maxAge: 900000, httpOnly: true });
   res.status(statusCode).json({ success: true, token, user });
+};
+
+const getQueueNumber = async (queue) => {
+  try {
+    const queuing_users = await Queue.find({
+      $and: [
+        { restaurant: queue.restaurant },
+        { enter_queue_time: { $lt: queue.enter_queue_time } },
+        { state: { $lte: QUEUESTATE.NOTIFIED } },
+      ],
+    });
+
+    return queuing_users.length;
+  } catch (error) {
+    return error;
+  }
 };

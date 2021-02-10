@@ -10,6 +10,7 @@ import MerchantSignUp from "./modules/MerchantSignUp/MerchantSignUp";
 import MerchantDashboard from "./modules/MerchantDashboard/MerchantDashboard";
 import BrowsePage from "./modules/BrowsePage/BrowsePage";
 import UserSignUp from "./modules/UserSignUp/UserSignUp";
+import PrivateRoute from "./components/PrivateRoute";
 
 import { store, persistor } from "./store";
 
@@ -21,10 +22,12 @@ function App() {
           <Header />
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/merchant/:name" component={MerchantPage} />
-            <Route
+            <Route path="/merchant/:name" exact component={MerchantPage} />
+            <PrivateRoute
               path="/merchant/dashboard/:name"
+              isAdminPage={true}
               component={MerchantDashboard}
+              redirect="/sign/merchant"
             />
             <Route path="/merchant-sign-up" component={MerchantSignUp} />
             <Route path="/browse" component={BrowsePage} />

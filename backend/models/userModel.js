@@ -25,7 +25,7 @@ const userSchema = new Schema(
     first_name: String,
     last_name: String,
     is_admin: {
-      type: String,
+      type: Boolean,
       default: false,
     },
     resetPasswordToken: String,

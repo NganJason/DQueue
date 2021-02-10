@@ -33,7 +33,6 @@ export function useWindowDimensions() {
   return windowDimensions;
 }
 
-<<<<<<< HEAD
 export async function isAuth() {
   try {
     const { data } = await ApiService.get("/user/checkAuth");
@@ -48,21 +47,17 @@ export async function isAuth() {
   }
 }
 
-export async function setAuth(redirect = false, history = null) {
+export async function setAuth() {
   const isLoggedIn = await isAuth();
 
   if (!isLoggedIn) {
     setLogOut();
-
-    if (redirect) {
-      history.push("/sign/in");
-    }
   }
-=======
+}
+
 export const mobileThreshold = 700;
 
 export function validateEmail(email) {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
->>>>>>> 0f12cbd1e46f4a574020ad232169f933e9511bbd
 }

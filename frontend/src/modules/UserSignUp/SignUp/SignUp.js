@@ -45,7 +45,7 @@ const SignUp = ({ user }) => {
         password: signupDetails["Password"],
         first_name: signupDetails["First Name"],
         last_name: signupDetails["Last Name"],
-        is_admin: user == "user" ? false : true,
+        is_admin: user === "user" ? false : true,
       };
 
       const { data } = await ApiService.post("/user/signup", payload);

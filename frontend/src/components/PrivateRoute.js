@@ -20,7 +20,7 @@ const PrivateRoute = ({
               to={{ pathname: redirect, state: { from: props.location } }}
             />
           );
-        } else if (user.is_admin === isAdminPage) {
+        } else if (isAdminPage === undefined || user.is_admin === isAdminPage) {
           return <Component {...props} />;
         } else {
           return (

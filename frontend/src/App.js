@@ -25,8 +25,8 @@ function App() {
             <Route path="/merchant/:name" exact component={MerchantPage} />
             <PrivateRoute
               path="/merchant/dashboard/:name"
-              isAdminPage={true}
               component={MerchantDashboard}
+              isAdminPage={true}
               redirect="/sign/merchant"
             />
             <Route path="/merchant-sign-up" component={MerchantSignUp} />

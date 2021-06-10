@@ -13,7 +13,7 @@ DQueue is an interactive platform designed to improve customers waiting time and
 * Machines/ hardwares invested by merchants are **costly** and **require maintenance** from time to time 
 
 ##### Features provided by app
-* Users are able to browse through their favourite and **join a virtual queue** from the comfort of their home
+* Users are able to browse through their favourite restaurants and **join a virtual queue** from the comfort of their home
 * Users will be **notified and updated** regarding their estimated queuing time periodically
 * Merchants will be able to view the current queuing users via an **interactive dashboard** and notify users accordingly
 

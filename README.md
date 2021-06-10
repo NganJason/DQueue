@@ -18,3 +18,26 @@ DQueue is an interactive platform designed to improve customers waiting time and
 * Merchants will be able to view the current queuing users via an **interactive dashboard** and notify users accordingly
 
 ## Images ##
+<details>
+  <summary>User Login Page</summary>
+</details>
+<details>
+  <summary>Homepage</summary>
+</details>
+<details>
+  <summary>Restaurant Browsing Page</summary>
+</details>
+<details>
+  <summary>Restaurant Info Page</summary>
+</details>
+<details>
+  <summary>User Queue List</summary>
+</details>
+<details>
+  <summary>Merchant Dashboard</summary>
+</details>
+<details>
+  <summary>User Notification</summary>
+</details>
+
+## Videos Demo ##

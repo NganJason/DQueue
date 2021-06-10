@@ -8,7 +8,7 @@ DQueue is an interactive platform designed to improve customers waiting time and
 * Merchants are investing heavily on **physical machines/ hardwares** to generate queue number for users in order to tackle such issues
 
 ##### Problem
-* Queuing problem is **time consuming** and **inefficient** as it requires users to be physically present at a specific location
+* Queuing problem is **time-consuming** and **inefficient** as it requires users to be physically present at a specific location
 * Queueing problem has resulted in **overcrowding issues** in malls and restaurants
 * Machines/ hardwares invested by merchants are **costly** and **require maintenance** from time to time 
 

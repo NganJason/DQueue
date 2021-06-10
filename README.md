@@ -19,7 +19,7 @@ DQueue is an interactive platform designed to improve customers waiting time and
 
 ##### Contributors
 * tanbangyi@gmail.com
-* jseow97@gmail.com
+* jseow5177@gmail.com
 * nganjason97@gmail.com
 
 ## Images ##

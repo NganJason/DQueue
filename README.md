@@ -60,7 +60,7 @@ DQueue is an interactive platform designed to improve customers waiting time and
 
 ## Videos Demo ##
 ##### User Authentication
-![User Authentication](https://user-images.githubusercontent.com/57489399/121809017-b4296980-cc8d-11eb-9d1e-c36b66c9189d.gif)
+<img src="https://user-images.githubusercontent.com/57489399/121809017-b4296980-cc8d-11eb-9d1e-c36b66c9189d.gif" name="User Authentication">
 
 ##### User Navigation Flow
 

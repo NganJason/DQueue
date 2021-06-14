@@ -18,7 +18,7 @@ DQueue is an interactive platform designed to improve customers waiting time and
 * Merchants will be able to view the current queuing users via an **interactive dashboard** and notify users accordingly
 
 ##### Tech Stack
-* Front-end - React
+* Front-end - React, SCSS
 * Back-end - Express.js
 * Database - MongoDB
 

@@ -65,11 +65,7 @@ DQueue is an interactive platform designed to improve customers waiting time and
 </details>
 <details>
   <summary>User Navigation Flow</summary>
-    <img src="https://user-images.githubusercontent.com/57489399/121808244-1d0ee280-cc8a-11eb-804c-f6c2635e114a.gif" name="Web Socket & User Notifications">
-  
-https://user-images.githubusercontent.com/57489399/121906809-0d60ce00-cd5e-11eb-80a4-317111c35178.mp4
-
-
+  https://user-images.githubusercontent.com/57489399/121906809-0d60ce00-cd5e-11eb-80a4-317111c35178.mp4
 </details>
 <details>
   <summary>Web Socket & User Notifications</summary>

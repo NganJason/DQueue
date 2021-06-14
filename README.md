@@ -2,27 +2,27 @@
 
 DQueue is an interactive platform designed to improve customers waiting time and mitigate long queuing problem in restaurants.
 
-##### Background
+#### Background
 * **Long queuing problem** has become a significant nuissance in our everyday lives especially when it comes to queuing for food
 * Users are sometimes required to be physically present outside a restaurant just to wait for their numbers to be called
 * Merchants are investing heavily on **physical machines/ hardwares** to generate queue number for users in order to tackle such issues
 
-##### Problem
+#### Problem
 * Queuing problem is **time-consuming** and **inefficient** as it requires users to be physically present
 * Queueing problem has resulted in **overcrowding issues** in malls and restaurants
 * Machines/ hardwares invested by merchants are **costly** and **require maintenance** from time to time 
 
-##### Features Provided by App
+#### Features Provided by App
 * Users are able to browse through their favourite restaurants and **join a virtual queue** from the comfort of their home
 * Users will be **notified and updated** regarding their estimated queuing time periodically
 * Merchants will be able to view the current queuing users via an **interactive dashboard** and notify users accordingly
 
-##### Tech Stack
+#### Tech Stack
 * Front-end - React, SCSS
 * Back-end - Express.js
 * Database - MongoDB
 
-##### Contributors
+#### Contributors
 * tanbangyi@gmail.com
 * jseow5177@gmail.com
 * nganjason97@gmail.com
@@ -58,7 +58,7 @@ DQueue is an interactive platform designed to improve customers waiting time and
   <img src="https://user-images.githubusercontent.com/57489399/121450401-3c79e700-c9ce-11eb-84fe-19dcb4f669e1.png" name="User Notification">
 </details>
 
-## Videos Demo ##
+## Demo Videos ##
 <details>
   <summary>User Authentication</summary>
   <img src="https://user-images.githubusercontent.com/57489399/121809017-b4296980-cc8d-11eb-9d1e-c36b66c9189d.gif" name="User Authentication">
